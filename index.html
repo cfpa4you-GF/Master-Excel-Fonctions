@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خبير إكسل - 50 دالة حقيقية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f3f4f6;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .excel-green { background-color: #107c41; }
+        .text-excel { color: #107c41; }
+        .excel-grid {
+            border-collapse: collapse;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: ltr;
+        }
+        .excel-grid td, .excel-grid th {
+            border: 1px solid #d1d5db;
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+        .excel-grid th {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            font-weight: bold;
+        }
+        .dir-ltr { direction: ltr; text-align: left; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <header class="excel-green text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-lg font-bold flex items-center gap-2">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+                Master Excel (50 Fonctions)
+            </h1>
+            <div id="searchToggle" class="cursor-pointer">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+        </div>
+        <div id="searchBarContainer" class="hidden mt-3">
+            <input type="text" id="searchInput" placeholder="ابحث عن دالة (Ex: RECHERCHEV)..." class="w-full p-2 rounded-lg text-black text-sm outline-none">
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4">
+        
+        <div id="dashboard">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">موسوعة الدوال (50 دالة حقيقية)</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">دليل شامل لـ 50 دالة إكسل بالفرنسية مع شرح عربي وأمثلة حية لكل فئة.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4" id="categoriesGrid"></div>
+        </div>
+
+        <div id="functionList" class="hidden">
+            <div class="flex items-center gap-3 mb-4">
+                <button onclick="goHome()" class="p-2 bg-white rounded-full shadow-sm text-excel">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <h3 id="categoryTitle" class="text-lg font-bold text-gray-800"></h3>
+            </div>
+            <div id="listContainer" class="space-y-3"></div>
+        </div>
+
+        <div id="functionDetail" class="hidden">
+            <button onclick="backToList()" class="mb-4 flex items-center gap-2 text-excel font-bold">
+                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                 العودة
+            </button>
+            <div class="bg-white rounded-3xl shadow-sm overflow-hidden mb-10">
+                <div class="excel-green p-6 text-white">
+                    <h2 id="detailName" class="text-3xl font-black ltr"></h2>
+                    <p id="detailCategory" class="text-xs opacity-80 mt-1 uppercase tracking-widest"></p>
+                </div>
+                <div class="p-6 space-y-6">
+                    <section>
+                        <h4 class="font-bold text-gray-800 border-r-4 border-excel-green pr-2 mb-2">الوظيفة</h4>
+                        <p id="detailDesc" class="text-gray-600 text-sm leading-relaxed"></p>
+                    </section>
+                    <section>
+                        <h4 class="font-bold text-gray-800 border-r-4 border-blue-500 pr-2 mb-2">الصيغة</h4>
+                        <div class="bg-gray-900 rounded-xl p-4 dir-ltr">
+                            <code id="detailSyntax" class="text-blue-300 font-mono text-sm"></code>
+                        </div>
+                    </section>
+                    <section>
+                        <h4 class="font-bold text-gray-800 border-r-4 border-yellow-500 pr-2 mb-3">Exemple (واجهة فرنسية)</h4>
+                        <div class="overflow-x-auto border rounded-xl">
+                            <table class="excel-grid w-full">
+                                <thead id="excelHeader"></thead>
+                                <tbody id="excelBody"></tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <div id="detailNote" class="bg-green-50 p-4 rounded-xl border border-green-100">
+                        <p class="text-xs text-green-800 leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t flex justify-around p-3 z-40">
+        <button onclick="goHome()" class="flex flex-col items-center text-excel">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span class="text-[10px] mt-1">الرئيسية</span>
+        </button>
+        <button class="flex flex-col items-center text-gray-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <span class="text-[10px] mt-1">المسارات</span>
+        </button>
+    </nav>
+
+    <script>
+        const categories = {
+            math: { name: "Mathématiques", icon: "📐", color: "blue" },
+            logic: { name: "Logique", icon: "🧠", color: "purple" },
+            text: { name: "Texte", icon: "📝", color: "yellow" },
+            lookup: { name: "Recherche", icon: "🔍", color: "red" },
+            stat: { name: "Statistiques", icon: "📊", color: "green" },
+            date: { name: "Date & Heure", icon: "📅", color: "indigo" }
+        };
+
+        const functionsData = [
+            // --- MATHÉMATIQUES (9) ---
+            { cat: 'math', name: 'SOMME', desc: 'جمع كافة الأرقام في نطاق من الخلايا.', syntax: '=SOMME(A1:B10)', example: { h: ['A','B'], b: [['10','20'],['Total','=SOMME(A1:B1)']] }, note: 'النتيجة 30.' },
+            { cat: 'math', name: 'PRODUIT', desc: 'ضرب كافة الأرقام المعطاة.', syntax: '=PRODUIT(A1:B1)', example: { h: ['A','B'], b: [['5','4'],['Rés','=PRODUIT(A1:B1)']] }, note: 'النتيجة 20.' },
+            { cat: 'math', name: 'ARRONDI', desc: 'تقريب رقم لعدد محدد من الأرقام بعد الفاصلة.', syntax: '=ARRONDI(nombre; num_chiffres)', example: { h: ['Val','Rés'], b: [['10,556','=ARRONDI(A1;1)']] }, note: 'النتيجة 10,6.' },
+            { cat: 'math', name: 'ABS', desc: 'إرجاع القيمة المطلقة لرقم.', syntax: '=ABS(-5)', example: { h: ['Val','Rés'], b: [['-25','=ABS(A1)']] }, note: 'النتيجة 25.' },
+            { cat: 'math', name: 'SOMME.SI', desc: 'جمع الخلايا بناءً على شرط واحد.', syntax: '=SOMME.SI(plage; critère; [plage_somme])', example: { h: ['Art','Prix'], b: [['A','10'],['B','20'],['Total A','=SOMME.SI(A1:A2;"A";B1:B2)']] }, note: 'يجمع أسعار الصنف A فقط.' },
+            { cat: 'math', name: 'ENT', desc: 'تقريب الرقم لأسفل إلى أقرب عدد صحيح.', syntax: '=ENT(8,9)', example: { h: ['Val','Rés'], b: [['8,9','=ENT(A1)']] }, note: 'النتيجة 8.' },
+            { cat: 'math', name: 'MOD', desc: 'إرجاع باقي القسمة.', syntax: '=MOD(nombre; diviseur)', example: { h: ['A','B','Reste'], b: [['10','3','=MOD(A1;B1)']] }, note: 'باقي قسمة 10 على 3 هو 1.' },
+            { cat: 'math', name: 'PUISSANCE', desc: 'رفع الرقم لأس معين.', syntax: '=PUISSANCE(nombre; puissance)', example: { h: ['Base','Exp','Rés'], b: [['2','3','=PUISSANCE(A1;B1)']] }, note: '2 أس 3 يساوي 8.' },
+            { cat: 'math', name: 'RACINE', desc: 'إرجاع الجذر التربيعي الموجب.', syntax: '=RACINE(nombre)', example: { h: ['Val','Rés'], b: [['16','=RACINE(A1)']] }, note: 'النتيجة 4.' },
+
+            // --- LOGIQUE (8) ---
+            { cat: 'logic', name: 'SI', desc: 'الشرط البسيط: إذا كان كذا، افعل كذا.', syntax: '=SI(test; si_vrai; si_faux)', example: { h: ['Moy','Etat'], b: [['12','=SI(A1>=10;"Admis";"Refusé")']] }, note: 'يعيد Admis لأن 12 > 10.' },
+            { cat: 'logic', name: 'ET', desc: 'يتحقق من صحة جميع الشروط.', syntax: '=ET(cond1; cond2)', example: { h: ['A','B','Valide'], b: [['15','20','=ET(A1>10;B1>10)']] }, note: 'يعيد VRAI.' },
+            { cat: 'logic', name: 'OU', desc: 'يتحقق من صحة شرط واحد على الأقل.', syntax: '=OU(cond1; cond2)', example: { h: ['A','B','Valide'], b: [['5','12','=OU(A1>10;B1>10)']] }, note: 'يعيد VRAI لأن 12 > 10.' },
+            { cat: 'logic', name: 'NON', desc: 'يعكس القيمة المنطقية.', syntax: '=NON(logique)', example: { h: ['Val','Inv'], b: [['VRAI','=NON(A1)']] }, note: 'النتيجة FAUX.' },
+            { cat: 'logic', name: 'SI.ERREUR', desc: 'يعالج الأخطاء في المعادلات.', syntax: '=SI.ERREUR(valeur; message)', example: { h: ['A','B','Div'], b: [['10','0','=SI.ERREUR(A1/B1;"Erreur")']] }, note: 'يعرض Erreur بدلاً من #DIV/0!.' },
+            { cat: 'logic', name: 'SI.CONDITIONS', desc: 'شروط متعددة دون تداخل SI.', syntax: '=SI.CONDITIONS(test1; v1; test2; v2)', example: { h: ['Note','App'], b: [['18','=SI.CONDITIONS(A1>16;"Exc";A1>10;"Pass")']] }, note: 'النتيجة Exc.' },
+            { cat: 'logic', name: 'VRAI', desc: 'إرجاع القيمة المنطقية VRAI.', syntax: '=VRAI()', example: { h: ['Statut'], b: [['=VRAI()']] }, note: 'تستخدم في الاختبارات المنطقية.' },
+            { cat: 'logic', name: 'FAUX', desc: 'إرجاع القيمة المنطقية FAUX.', syntax: '=FAUX()', example: { h: ['Statut'], b: [['=FAUX()']] }, note: 'تستخدم في الاختبارات المنطقية.' },
+
+            // --- TEXTE (9) ---
+            { cat: 'text', name: 'CONCAT', desc: 'دمج نصوص من عدة خلايا.', syntax: '=CONCAT(A1; B1)', example: { h: ['Nom','Prénom','Rés'], b: [['Ali','Baba','=CONCAT(A1;" ";B1)']] }, note: 'النتيجة Ali Baba.' },
+            { cat: 'text', name: 'GAUCHE', desc: 'استخراج أحرف من يسار النص.', syntax: '=GAUCHE(texte; nb)', example: { h: ['Mot','Rés'], b: [['Excel','=GAUCHE(A1;2)']] }, note: 'النتيجة Ex.' },
+            { cat: 'text', name: 'DROITE', desc: 'استخراج أحرف من يمين النص.', syntax: '=DROITE(texte; nb)', example: { h: ['Mot','Rés'], b: [['Excel','=DROITE(A1;2)']] }, note: 'النتيجة el.' },
+            { cat: 'text', name: 'STXT', desc: 'استخراج نص من وسط السلسلة.', syntax: '=STXT(texte; debut; nb)', example: { h: ['Mot','Rés'], b: [['Microsoft','=STXT(A1;6;4)']] }, note: 'يستخرج soft.' },
+            { cat: 'text', name: 'NBCAR', desc: 'حساب عدد الأحرف.', syntax: '=NBCAR(A1)', example: { h: ['Mot','Long'], b: [['Data','=NBCAR(A1)']] }, note: 'النتيجة 4.' },
+            { cat: 'text', name: 'MAJUSCULE', desc: 'تحويل النص إلى حروف كبيرة.', syntax: '=MAJUSCULE("abc")', example: { h: ['Mot','Grand'], b: [['excel','=MAJUSCULE(A1)']] }, note: 'النتيجة EXCEL.' },
+            { cat: 'text', name: 'MINUSCULE', desc: 'تحويل النص إلى حروف صغيرة.', syntax: '=MINUSCULE("ABC")', example: { h: ['Mot','Petit'], b: [['EXCEL','=MINUSCULE(A1)']] }, note: 'النتيجة excel.' },
+            { cat: 'text', name: 'NOMPROPRE', desc: 'جعل الحرف الأول كبيراً.', syntax: '=NOMPROPRE("ali baba")', example: { h: ['Texte','Rés'], b: [['ali baba','=NOMPROPRE(A1)']] }, note: 'النتيجة Ali Baba.' },
+            { cat: 'text', name: 'SUPPRESPACE', desc: 'حذف المسافات الزائدة.', syntax: '=SUPPRESPACE(A1)', example: { h: ['Texte','Net'], b: [['  Ali  ','=SUPPRESPACE(A1)']] }, note: 'يحذف المسافات من الجانبين.' },
+
+            // --- RECHERCHE (8) ---
+            { cat: 'lookup', name: 'RECHERCHEV', desc: 'البحث العمودي في الجدول.', syntax: '=RECHERCHEV(val; table; col; 0)', example: { h: ['ID','Nom'], b: [['101','PC'],['102','TEL'],['Find','=RECHERCHEV(101;A1:B2;2;0)']] }, note: 'يعيد PC.' },
+            { cat: 'lookup', name: 'RECHERCHEH', desc: 'البحث الأفقي في الجدول.', syntax: '=RECHERCHEH(val; table; lig; 0)', example: { h: ['ID','1','2'], b: [['Val','A','B'],['Find','=RECHERCHEH("1";A1:C2;2;0)']] }, note: 'يبحث في الصفوف.' },
+            { cat: 'lookup', name: 'INDEX', desc: 'إرجاع قيمة بموضع محدد (صف/عمود).', syntax: '=INDEX(matrice; lig; col)', example: { h: ['X','Y'], b: [['A','B'],['C','D'],['Pos','=INDEX(A1:B2;2;1)']] }, note: 'يعيد C (صف 2، عمود 1).' },
+            { cat: 'lookup', name: 'EQUIV', desc: 'إرجاع رقم موضع قيمة في نطاق.', syntax: '=EQUIV(val; plage; 0)', example: { h: ['Items','Pos'], b: [['PC'],['TEL'],['TV'],['=EQUIV("TEL";A1:A3;0)']] }, note: 'النتيجة 2.' },
+            { cat: 'lookup', name: 'TRANSPOSE', desc: 'قلب الجدول من صفوف لأعمدة.', syntax: '{=TRANSPOSE(A1:B2)}', example: { h: ['A','B'], b: [['1','2'],['3','4'],['Trans','=TRANSPOSE(A1:B2)']] }, note: 'دالة مصفوفة.' },
+            { cat: 'lookup', name: 'COLONNE', desc: 'إرجاع رقم العمود.', syntax: '=COLONNE(A1)', example: { h: ['Col'], b: [['=COLONNE()']] }, note: 'يرجع رقم العمود الحالي.' },
+            { cat: 'lookup', name: 'LIGNE', desc: 'إرجاع رقم الصف.', syntax: '=LIGNE(A1)', example: { h: ['Ligne'], b: [['=LIGNE()']] }, note: 'يرجع رقم الصف الحالي.' },
+            { cat: 'lookup', name: 'RECHERCHEX', desc: 'الدالة الأحدث والأقوى للبحث.', syntax: '=RECHERCHEX(val; plage_recherche; plage_résultat)', example: { h: ['Nom','Salaire'], b: [['Ali','1000'],['Recherche','=RECHERCHEX("Ali";A1:A1;B1:B1)']] }, note: 'أفضل بديل لـ RECHERCHEV.' },
+
+            // --- STATISTIQUES (9) ---
+            { cat: 'stat', name: 'MOYENNE', desc: 'المتوسط الحسابي.', syntax: '=MOYENNE(A1:A10)', example: { h: ['Val'], b: [['10'],['20'],['Moy','=MOYENNE(A1:A2)']] }, note: 'النتيجة 15.' },
+            { cat: 'stat', name: 'NB', desc: 'حساب عدد الخلايا الرقمية.', syntax: '=NB(A1:A10)', example: { h: ['V'], b: [['1'],['T'],['3'],['Count','=NB(A1:A3)']] }, note: 'النتيجة 2.' },
+            { cat: 'stat', name: 'NBVAL', desc: 'حساب الخلايا غير الفارغة.', syntax: '=NBVAL(A1:A10)', example: { h: ['V'], b: [['1'],['T'],[''],['Count','=NBVAL(A1:A3)']] }, note: 'النتيجة 2.' },
+            { cat: 'stat', name: 'MAX', desc: 'أكبر قيمة.', syntax: '=MAX(A1:A5)', example: { h: ['V'], b: [['5'],['12'],['8'],['Max','=MAX(A1:A3)']] }, note: 'النتيجة 12.' },
+            { cat: 'stat', name: 'MIN', desc: 'أصغر قيمة.', syntax: '=MIN(A1:A5)', example: { h: ['V'], b: [['5'],['12'],['8'],['Min','=MIN(A1:A3)']] }, note: 'النتيجة 5.' },
+            { cat: 'stat', name: 'NB.SI', desc: 'عد الخلايا بشرط.', syntax: '=NB.SI(plage; critère)', example: { h: ['Genre'], b: [['M'],['F'],['M'],['Count M','=NB.SI(A1:A3;"M")']] }, note: 'النتيجة 2.' },
+            { cat: 'stat', name: 'MEDIANE', desc: 'إرجاع الوسيط لمجموعة أرقام.', syntax: '=MEDIANE(1;2;3;4;5)', example: { h: ['Vals'], b: [['10'],['20'],['30'],['Med','=MEDIANE(A1:A3)']] }, note: 'النتيجة 20.' },
+            { cat: 'stat', name: 'RANG', desc: 'رتبة رقم في قائمة.', syntax: '=RANG(val; plage)', example: { h: ['Note'], b: [['15'],['18'],['12'],['Rang 18','=RANG(A2;A1:A3)']] }, note: 'النتيجة 1.' },
+            { cat: 'stat', name: 'ECART.TYPE', desc: 'الانحراف المعياري.', syntax: '=ECART.TYPE(A1:A10)', example: { h: ['Val'], b: [['10'],['12'],['14'],['Ecart','=ECART.TYPE(A1:A3)']] }, note: 'يقيس تشتت البيانات.' },
+
+            // --- DATE & HEURE (7) ---
+            { cat: 'date', name: 'AUJOURDHUI', desc: 'تاريخ اليوم.', syntax: '=AUJOURDHUI()', example: { h: ['Date'], b: [['=AUJOURDHUI()']] }, note: 'تاريخ متغير.' },
+            { cat: 'date', name: 'MAINTENANT', desc: 'التاريخ والوقت الآن.', syntax: '=MAINTENANT()', example: { h: ['Maintenant'], b: [['=MAINTENANT()']] }, note: 'يتضمن الساعة.' },
+            { cat: 'date', name: 'ANNEE', desc: 'استخراج السنة من التاريخ.', syntax: '=ANNEE("15/12/2023")', example: { h: ['Date','An'], b: [['15/12/2023','=ANNEE(A1)']] }, note: 'النتيجة 2023.' },
+            { cat: 'date', name: 'MOIS', desc: 'استخراج الشهر (1-12).', syntax: '=MOIS(A1)', example: { h: ['Date','Mois'], b: [['15/12/2023','=MOIS(A1)']] }, note: 'النتيجة 12.' },
+            { cat: 'date', name: 'JOUR', desc: 'استخراج يوم الشهر.', syntax: '=JOUR(A1)', example: { h: ['Date','Jour'], b: [['15/12/2023','=JOUR(A1)']] }, note: 'النتيجة 15.' },
+            { cat: 'date', name: 'JOURSEM', desc: 'رقم يوم الأسبوع (1-7).', syntax: '=JOURSEM(A1)', example: { h: ['Date','JS'], b: [['18/12/2025','=JOURSEM(A1)']] }, note: 'يعتمد على إعدادات النظام.' },
+            { cat: 'date', name: 'DATE', desc: 'تجميع تاريخ من أرقام.', syntax: '=DATE(2025;12;18)', example: { h: ['A','M','J','Date'], b: [['2025','12','18','=DATE(A1;B1;C1)']] }, note: 'تجميع العناصر.' }
+        ];
+
+        function init() {
+            const grid = document.getElementById('categoriesGrid');
+            Object.keys(categories).forEach(key => {
+                const cat = categories[key];
+                const count = functionsData.filter(f => f.cat === key).length;
+                const div = document.createElement('div');
+                div.className = `bg-white p-5 rounded-2xl shadow-sm border-b-4 border-${cat.color}-500 flex flex-col items-center cursor-pointer active:scale-95 transition-transform`;
+                div.onclick = () => showCategory(key);
+                div.innerHTML = `
+                    <span class="text-3xl mb-2">${cat.icon}</span>
+                    <span class="font-bold text-gray-800 text-sm">${cat.name}</span>
+                    <span class="text-[10px] text-gray-400 mt-1">${count} دوال</span>
+                `;
+                grid.appendChild(div);
+            });
+
+            document.getElementById('searchToggle').onclick = () => {
+                const bar = document.getElementById('searchBarContainer');
+                bar.classList.toggle('hidden');
+                if(!bar.classList.contains('hidden')) document.getElementById('searchInput').focus();
+            };
+
+            document.getElementById('searchInput').oninput = (e) => {
+                const term = e.target.value.toUpperCase();
+                if(term.length > 0) {
+                    const filtered = functionsData.filter(f => f.name.includes(term));
+                    renderList("نتائج البحث", filtered);
+                } else {
+                    goHome();
+                }
+            };
+        }
+
+        function showCategory(key) {
+            const filtered = functionsData.filter(f => f.cat === key);
+            renderList(categories[key].name, filtered);
+        }
+
+        function renderList(title, list) {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('functionDetail').classList.add('hidden');
+            document.getElementById('functionList').classList.remove('hidden');
+            document.getElementById('categoryTitle').innerText = title;
+
+            const container = document.getElementById('listContainer');
+            container.innerHTML = '';
+            list.forEach(func => {
+                const item = document.createElement('div');
+                item.className = "bg-white p-4 rounded-xl shadow-sm border-r-4 border-excel-green flex justify-between items-center cursor-pointer";
+                item.onclick = () => showDetail(func);
+                item.innerHTML = `
+                    <div class="w-full">
+                        <div class="font-bold text-gray-800 ltr uppercase flex justify-between">
+                            <span>${func.name}</span>
+                            <span class="text-[10px] text-gray-300 font-normal">${categories[func.cat]?.name || ''}</span>
+                        </div>
+                        <div class="text-[11px] text-gray-500 mt-1 truncate">${func.desc}</div>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function showDetail(func) {
+            document.getElementById('functionList').classList.add('hidden');
+            document.getElementById('functionDetail').classList.remove('hidden');
+            
+            document.getElementById('detailName').innerText = func.name;
+            document.getElementById('detailCategory').innerText = categories[func.cat]?.name || 'Divers';
+            document.getElementById('detailDesc').innerText = func.desc;
+            document.getElementById('detailSyntax').innerText = func.syntax;
+            document.getElementById('detailNote').querySelector('p').innerText = func.note;
+
+            const header = document.getElementById('excelHeader');
+            const body = document.getElementById('excelBody');
+            header.innerHTML = '<tr><th></th>' + func.example.h.map(col => `<th>${col}</th>`).join('') + '</tr>';
+            body.innerHTML = func.example.b.map((row, idx) => {
+                return `<tr><th>${idx+1}</th>` + row.map(cell => {
+                    const isFormula = cell.startsWith('=');
+                    return `<td class="${isFormula ? 'bg-yellow-50 text-blue-600 font-bold' : ''}">${cell}</td>`;
+                }).join('') + '</tr>';
+            }).join('');
+            window.scrollTo(0,0);
+        }
+
+        function backToList() {
+            document.getElementById('functionDetail').classList.add('hidden');
+            document.getElementById('functionList').classList.remove('hidden');
+        }
+
+        function goHome() {
+            document.getElementById('functionList').classList.add('hidden');
+            document.getElementById('functionDetail').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            document.getElementById('searchBarContainer').classList.add('hidden');
+        }
+
+        window.onload = init;
+    </script>
+</body>

@@ -1,0 +1,23 @@
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #f3f4f6;
+    -webkit-tap-highlight-color: transparent;
+}
+.excel-green { background-color: #107c41; }
+.text-excel { color: #107c41; }
+.excel-grid {
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    direction: ltr;
+}
+.excel-grid td, .excel-grid th {
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+.excel-grid th {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-weight: bold;
+}
+.dir-ltr { direction: ltr; text-align: left; }
