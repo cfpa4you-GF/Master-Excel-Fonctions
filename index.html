@@ -1,22 +1,63 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.png">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خبير إكسل - 50 دالة حقيقية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تعلم أكسل بالتمارين</title>
+    
+    <!-- إعدادات التطبيق لـ iOS (iPhone/iPad) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="أكسل بالتمارين">
+    
+    <!-- أيقونة التطبيق لـ iPhone -->
+    <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/192px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png">
+
+    <!-- إعدادات التطبيق لـ Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="تعلم أكسل بالتمارين">
+    <meta name="theme-color" content="#107c41">
+
+    <!-- ملف Manifest مدمج مع أيقونات إكسل -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItiq2LnZhNmFINij2YPYs9mEINio2KfZhNiq2YXYp9ix2YrZhiIsCiAgInNob3J0X25hbWUiIjogItiq2LnZhNmFINij2YPYs9mEINio2KfZhNiq2YXYp9ix2YrZhiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMTA3YzQxIiwKICAidGhlbWVfY29sb3IiOiAiIzEwN2M0MSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vdXBsb2FkLndpa2ltZWRpYS5vcmcvd2lraXBlZGlhL2NvbW1vbnMvdGh1bWIvMy8zNC9NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy8xOTJweC1NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy5wbmciLAogICAgICAic2l6ZXMiIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9LAogICAgewogICAgICAic3JjIjogImh0dHBzOi8vdXBsb2FkLndpa2ltZWRpYS5vcmcvd2lraXBlZGlhL2NvbW1vbnMvdGh1bWIvMy8zNC9NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy81MTJweC1NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy5wbmciLAogICAgICAic2l6ZXMiIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        excelGreen: '#107c41',
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #f3f4f6;
             -webkit-tap-highlight-color: transparent;
+            overscroll-behavior-y: contain;
+            transition: background-color 0.3s ease;
         }
+        
+        /* Light Mode Default */
+        body { background-color: #f3f4f6; color: #1f2937; }
+        
+        /* Dark Mode Global Styles */
+        .dark body { background-color: #111827; color: #f9fafb; }
+        .dark .bg-white { background-color: #1f2937; }
+        .dark .text-gray-800 { color: #f3f4f6; }
+        .dark .text-gray-500 { color: #9ca3af; }
+        .dark .border-gray-100, .dark .border-gray-200 { border-color: #374151; }
+        .dark .bg-gray-50 { background-color: #374151; }
+        .dark .bg-slate-50 { background-color: #111827; }
+
         .excel-green { background-color: #107c41; }
         .text-excel { color: #107c41; }
+        
         .excel-grid {
             border-collapse: collapse;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,274 +65,509 @@
         }
         .excel-grid td, .excel-grid th {
             border: 1px solid #d1d5db;
-            padding: 6px 10px;
+            padding: 4px 8px;
             font-size: 12px;
         }
+        .dark .excel-grid td, .dark .excel-grid th { border-color: #4b5563; }
+
         .excel-grid th {
-            background-color: #f3f4f6;
-            color: #4b5563;
+            background-color: #f8fafc;
+            color: #64748b;
+            font-weight: bold;
+            text-align: center;
+        }
+        .dark .excel-grid th { background-color: #1f2937; color: #9ca3af; }
+
+        .success-bg { background-color: #dcfce7; color: #166534; }
+        .dark .success-bg { background-color: #064e3b; color: #6ee7b7; }
+        .error-bg { background-color: #fee2e2; color: #991b1b; }
+        .dark .error-bg { background-color: #7f1d1d; color: #fca5a5; }
+
+        .ltr { direction: ltr; text-align: left; }
+        
+        .category-tab.active {
+            border-bottom: 3px solid #107c41;
+            color: #107c41;
             font-weight: bold;
         }
-        .dir-ltr { direction: ltr; text-align: left; }
+        .dark .category-tab.active { color: #34d399; border-color: #34d399; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .excel-ui-box {
+            background: #fff;
+            border: 1px solid #c0c0c0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .dark .excel-ui-box { background: #1f2937; border-color: #4b5563; }
+
+        .excel-formula-bar {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #333;
+        }
+        .dark .excel-formula-bar { background: #374151; border-color: #4b5563; color: #e5e7eb; }
+
+        #floatingHome {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0);
+        }
+        #floatingHome.visible { transform: scale(1); }
+        
+        .mode-icon { transition: transform 0.5s ease; }
+        .dark .mode-icon { transform: rotate(360deg); }
     </style>
 </head>
-<body class="pb-20">
+<body class="pb-24 transition-colors duration-300">
 
-    <header class="excel-green text-white p-4 shadow-lg sticky top-0 z-50">
+    <!-- Floating Home Button -->
+    <button id="floatingHome" onclick="goHome()" class="fixed bottom-6 left-6 z-[60] w-14 h-14 excel-green text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+        </svg>
+    </button>
+
+    <!-- Header Section -->
+    <header class="excel-green text-white p-4 shadow-md sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-lg font-bold flex items-center gap-2">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-                Master Excel (50 Fonctions)
+                Excel Master (FR)
             </h1>
-            <div id="searchToggle" class="cursor-pointer">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all mode-icon" title="تبديل الوضع">
+                    <svg id="darkIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg id="lightIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+                <div id="scoreBadge" class="bg-white/20 px-3 py-1 rounded-full text-sm font-bold">
+                    🏆 <span id="userPoints">0</span>
+                </div>
             </div>
-        </div>
-        <div id="searchBarContainer" class="hidden mt-3">
-            <input type="text" id="searchInput" placeholder="ابحث عن دالة (Ex: RECHERCHEV)..." class="w-full p-2 rounded-lg text-black text-sm outline-none">
         </div>
     </header>
 
     <main class="container mx-auto p-4">
         
+        <!-- Dashboard -->
         <div id="dashboard">
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-2">موسوعة الدوال (50 دالة حقيقية)</h2>
-                <p class="text-gray-500 text-sm leading-relaxed">دليل شامل لـ 50 دالة إكسل بالفرنسية مع شرح عربي وأمثلة حية لكل فئة.</p>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm mb-4 border border-gray-100 dark:border-gray-700 flex items-center justify-center gap-3">
+                <span class="text-gray-700 dark:text-gray-300 font-medium text-sm">تعلم دوال الإكسل مع:</span>
+                <div class="flex items-center gap-2 bg-gray-50 dark:bg-gray-700 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="url(#insta_grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16Z" stroke="url(#insta_grad)" stroke-width="2"/>
+                        <path d="M17.5 6.51L17.51 6.49889" stroke="url(#insta_grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="insta_grad" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#fdf497"/>
+                                <stop offset="0.05" stop-color="#fdf497"/>
+                                <stop offset="0.45" stop-color="#fd5949"/>
+                                <stop offset="0.6" stop-color="#d6249f"/>
+                                <stop offset="0.9" stop-color="#285AEB"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="font-bold text-gray-800 dark:text-gray-100 text-sm ltr">prof.i3lam_ali</span>
+                </div>
             </div>
-            <div class="grid grid-cols-2 gap-4" id="categoriesGrid"></div>
-        </div>
 
-        <div id="functionList" class="hidden">
-            <div class="flex items-center gap-3 mb-4">
-                <button onclick="goHome()" class="p-2 bg-white rounded-full shadow-sm text-excel">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm mb-6 flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white">تعلم بالتمارين</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">اختر فئة لاختبار مهاراتك</p>
+                </div>
+                <button onclick="toggleLibrary()" class="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-amber-200 transition-colors">
+                    📖 مكتبة الشرح (FR)
                 </button>
-                <h3 id="categoryTitle" class="text-lg font-bold text-gray-800"></h3>
             </div>
-            <div id="listContainer" class="space-y-3"></div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6" id="categoriesGrid"></div>
+
+            <button onclick="startFullQuiz()" class="w-full bg-blue-600 text-white p-5 rounded-2xl shadow-lg flex justify-between items-center group overflow-hidden relative">
+                <div class="relative z-10 text-right">
+                    <h4 class="font-bold text-lg">اختبار شامل (6 فئات)</h4>
+                    <p class="text-blue-100 text-xs mt-1">تمرين واحد من كل تخصص</p>
+                </div>
+                <span class="text-3xl relative z-10">🚀</span>
+                <div class="absolute inset-0 bg-blue-700 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+            </button>
         </div>
 
-        <div id="functionDetail" class="hidden">
-            <button onclick="backToList()" class="mb-4 flex items-center gap-2 text-excel font-bold">
-                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                 العودة
-            </button>
-            <div class="bg-white rounded-3xl shadow-sm overflow-hidden mb-10">
-                <div class="excel-green p-6 text-white">
-                    <h2 id="detailName" class="text-3xl font-black ltr"></h2>
-                    <p id="detailCategory" class="text-xs opacity-80 mt-1 uppercase tracking-widest"></p>
-                </div>
-                <div class="p-6 space-y-6">
-                    <section>
-                        <h4 class="font-bold text-gray-800 border-r-4 border-excel-green pr-2 mb-2">الوظيفة</h4>
-                        <p id="detailDesc" class="text-gray-600 text-sm leading-relaxed"></p>
-                    </section>
-                    <section>
-                        <h4 class="font-bold text-gray-800 border-r-4 border-blue-500 pr-2 mb-2">الصيغة</h4>
-                        <div class="bg-gray-900 rounded-xl p-4 dir-ltr">
-                            <code id="detailSyntax" class="text-blue-300 font-mono text-sm"></code>
-                        </div>
-                    </section>
-                    <section>
-                        <h4 class="font-bold text-gray-800 border-r-4 border-yellow-500 pr-2 mb-3">Exemple (واجهة فرنسية)</h4>
-                        <div class="overflow-x-auto border rounded-xl">
-                            <table class="excel-grid w-full">
-                                <thead id="excelHeader"></thead>
-                                <tbody id="excelBody"></tbody>
-                            </table>
-                        </div>
-                    </section>
-                    <div id="detailNote" class="bg-green-50 p-4 rounded-xl border border-green-100">
-                        <p class="text-xs text-green-800 leading-relaxed"></p>
-                    </div>
+        <!-- Library View -->
+        <div id="libraryView" class="hidden">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white text-right">قاموس الدوال بالفرنسية</h2>
+                <button onclick="toggleLibrary()" class="text-gray-400 font-bold hover:text-red-500 transition-colors">إغلاق ✖</button>
+            </div>
+
+            <div class="mb-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">البحث السريع عن دالة</label>
+                <div class="relative">
+                    <select id="functionSearch" onchange="searchFunction(this.value)" class="w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-700 dark:text-white outline-none focus:ring-2 focus:ring-excel-green transition-all appearance-none">
+                        <option value="">اختر دالة للمعاينة...</option>
+                    </select>
                 </div>
             </div>
+            
+            <div class="flex overflow-x-auto gap-4 mb-6 pb-2 no-scrollbar border-b border-gray-200 dark:border-gray-700" id="libraryTabs"></div>
+            <div id="libraryContent" class="space-y-6 animate-in fade-in duration-300"></div>
+        </div>
+
+        <!-- Quiz Interface -->
+        <div id="quizView" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <button onclick="goHome()" class="text-gray-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div class="px-4 py-1 bg-blue-50 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-300 font-bold text-xs" id="quizCatName">الفئة</div>
+                <div id="quizStepCounter" class="text-xs text-gray-400 font-bold">1 / 6</div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700">
+                <h3 id="quizQuestion" class="text-lg font-bold text-gray-800 dark:text-white mb-6"></h3>
+                
+                <div class="overflow-x-auto mb-6 bg-slate-50 dark:bg-gray-900 rounded-xl p-2 border border-slate-100 dark:border-gray-700">
+                    <table class="excel-grid w-full" id="quizTable"></table>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-400 mr-1 uppercase tracking-wider">Formule Excel (Français)</label>
+                        <input type="text" id="quizInput" style="direction: ltr; text-align: left;" spellcheck="false" class="w-full p-4 bg-gray-50 dark:bg-gray-700 border-2 border-transparent focus:border-blue-500 rounded-2xl font-mono text-blue-800 dark:text-blue-300 outline-none transition-all" placeholder="=FONCTION(...)">
+                    </div>
+                    <div id="quizFeedback" class="hidden p-4 rounded-2xl text-sm font-bold text-center animate-bounce"></div>
+                    <button id="submitBtn" onclick="checkAnswer()" class="w-full py-4 excel-green text-white rounded-2xl font-bold shadow-lg shadow-green-100 dark:shadow-none active:scale-95 transition-all">تحقق من الإجابة</button>
+                    <button id="nextBtn" onclick="nextQuestion()" class="hidden w-full py-4 bg-blue-600 text-white rounded-2xl font-bold">التمرين التالي ➔</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result View -->
+        <div id="resultView" class="hidden text-center py-10">
+            <div class="text-7xl mb-6">🎊</div>
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">أحسنت يا بطل!</h2>
+            <p class="text-gray-500 mb-8 px-10">لقد أتممت التمارين بنجاح.</p>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 inline-block mb-8">
+                <div class="text-xs text-gray-400 uppercase font-bold mb-1">النقاط الإجمالية</div>
+                <div class="text-4xl font-black text-excelGreen" id="finalScore">0</div>
+            </div>
+            <br>
+            <button onclick="goHome()" class="px-10 py-4 bg-gray-800 dark:bg-gray-700 text-white rounded-2xl font-bold">العودة للرئيسية</button>
         </div>
     </main>
 
-    <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t flex justify-around p-3 z-40">
-        <button onclick="goHome()" class="flex flex-col items-center text-excel">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-            <span class="text-[10px] mt-1">الرئيسية</span>
-        </button>
-        <button class="flex flex-col items-center text-gray-400">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <span class="text-[10px] mt-1">المسارات</span>
-        </button>
-    </nav>
-
     <script>
         const categories = {
-            math: { name: "Mathématiques", icon: "📐", color: "blue" },
-            logic: { name: "Logique", icon: "🧠", color: "purple" },
-            text: { name: "Texte", icon: "📝", color: "yellow" },
-            lookup: { name: "Recherche", icon: "🔍", color: "red" },
-            stat: { name: "Statistiques", icon: "📊", color: "green" },
-            date: { name: "Date & Heure", icon: "📅", color: "indigo" }
+            math: { name: "الرياضيات", icon: "📐", color: "blue", 
+                functions: [
+                    { name: "SOMME", desc: "تقوم بجمع كافة الأرقام في نطاق من الخلايا.", syntax: "=SOMME(plage)", example: "=SOMME(B1:B3)", uiData: { h: ['A (Items)', 'B (Prix)'], b: [['PC', '1200'], ['Souris', '25'], ['Clavier', '50']], target: 'B4', result: '1275' }, detail: "تجمع الأسعار في العمود B للحصول على المجموع الإجمالي." },
+                    { name: "PRODUIT", desc: "ضرب كافة الأرقام الموجودة كوسطاء.", syntax: "=PRODUIT(plage)", example: "=PRODUIT(A2:B2)", uiData: { h: ['A (Qté)', 'B (Prix)'], b: [['5', '10']], target: 'C2', result: '50' }, detail: "تضرب الكمية في السعر لحساب التكلفة الإجمالية." },
+                    { name: "ARRONDI", desc: "تقريب رقم إلى عدد محدد من الأرقام العشرية.", syntax: "=ARRONDI(nombre; num_chiffres)", example: "=ARRONDI(A1; 2)", uiData: { h: ['A (Valeur)'], b: [['15,6789']], target: 'B1', result: '15,68' }, detail: "تقرب الرقم 15,6789 إلى منزلتين عشريتين." },
+                    { name: "MOYENNE", desc: "حساب المتوسط الحسابي لمجموعة من القيم.", syntax: "=MOYENNE(plage)", example: "=MOYENNE(A1:A3)", uiData: { h: ['A (Notes)'], b: [['10'], ['15'], ['11']], target: 'A4', result: '12' }, detail: "تحسب معدل الدرجات في العمود A." },
+                    { name: "SOMME.SI", desc: "جمع الخلايا التي تحقق معياراً معيناً.", syntax: "=SOMME.SI(plage; critère)", example: "=SOMME.SI(A1:A3; \">50\")", uiData: { h: ['A (Valeur)'], b: [['10'], ['60'], ['80']], target: 'B1', result: '140' }, detail: "تجمع فقط الأرقام الأكبر من 50 (60+80)." }
+                ],
+                quiz: {
+                    q: "اجمع أسعار جميع المنتجات في العمود B (من السطر 1 إلى 3).",
+                    table: { h: ['A (Produit)', 'B (Prix)'], b: [['PC', '1200'], ['Clavier', '50'], ['Souris', '25']] },
+                    correct: ["=SOMME(B1:B3)"], points: 10
+                }
+            },
+            logic: { name: "المنطق", icon: "🧠", color: "purple", 
+                functions: [
+                    { name: "SI", desc: "تتحقق من شرط وتعيد قيمة للصح وأخرى للخطأ.", syntax: "=SI(test; vrai; faux)", example: "=SI(A1>=10; \"Admis\"; \"Refusé\")", uiData: { h: ['A (Moyenne)'], b: [['12']], target: 'B1', result: 'Admis' }, detail: "إذا كان المعدل 10 أو أكثر، يظهر الطالب كـ Admis." },
+                    { name: "SI.ERREUR", desc: "إرجاع قيمة تحددها إذا كانت الصيغة تعطي خطأ.", syntax: "=SI.ERREUR(val; si_err)", example: "=SI.ERREUR(A1/B1; 0)", uiData: { h: ['A (Dividende)', 'B (Diviseur)'], b: [['10', '0']], target: 'C1', result: '0' }, detail: "تعرض 0 بدلاً من الخطأ #DIV/0! في حال كانت القسمة على صفر." }
+                ],
+                quiz: {
+                    q: "إذا كانت العلامة في A1 أكبر من أو تساوي 10، اكتب 'Reçu'، وإلا اكتب 'Échoué'.",
+                    table: { h: ['A (Note)'], b: [['14']] },
+                    correct: ["=SI(A1>=10;\"REÇU\";\"ÉCHOUÉ\")", "=SI(A1>=10;\"RECU\";\"ECHOUÉ\")"], points: 15
+                }
+            },
+            text: { name: "النصوص", icon: "📝", color: "yellow", 
+                functions: [
+                    { name: "CONCAT", desc: "دمج عدة نصوص في سلسلة واحدة.", syntax: "=CONCAT(t1; t2)", example: "=CONCAT(A1; \" \"; B1)", uiData: { h: ['A (Nom)', 'B (Prénom)'], b: [['Ali', 'Ahmed']], target: 'C1', result: 'Ali Ahmed' }, detail: "تدمج الاسم واللقب مع مسافة بينهما." },
+                    { name: "NBCAR", desc: "حساب عدد الحروف في النص.", syntax: "=NBCAR(texte)", example: "=NBCAR(A1)", uiData: { h: ['A (Word)'], b: [['Excel']], target: 'B1', result: '5' }, detail: "تحسب طول كلمة Excel." }
+                ],
+                quiz: {
+                    q: "قم بدمج الاسم (A1) واللقب (B1) مع وضع مسافة بينهما.",
+                    table: { h: ['A (Nom)', 'B (Prénom)'], b: [['Ahmed', 'Ali']] },
+                    correct: ["=CONCAT(A1;\" \";B1)", "=A1&\" \"&B1"], points: 10
+                }
+            },
+            lookup: { name: "البحث", icon: "🔍", color: "red", 
+                functions: [
+                    { name: "RECHERCHEV", desc: "البحث الرأسي عن قيمة في عمود.", syntax: "=RECHERCHEV(v; table; col; [mode])", example: "=RECHERCHEV(\"PC\"; A1:B3; 2; 0)", uiData: { h: ['A (Prod)', 'B (Prix)'], b: [['PC', '500'], ['TV', '300']], target: 'D1', result: '500' }, detail: "تبحث عن سعر الـ PC في الجدول." }
+                ],
+                quiz: {
+                    q: "ابحث عن سعر 'PC' (الموجود في A1:B3) باستخدام دالة البحث العمودي.",
+                    table: { h: ['A (Nom)', 'B (Prix)'], b: [['PC', '5000'], ['TEL', '1200'], ['TAB', '800']] },
+                    correct: ["=RECHERCHEV(\"PC\";A1:B3;2;0)", "=RECHERCHEV(\"PC\";A1:B3;2;FAUX)"], points: 20
+                }
+            },
+            stat: { name: "الإحصاء", icon: "📊", color: "green", 
+                functions: [
+                    { name: "MAX", desc: "إرجاع أكبر قيمة في مجموعة.", syntax: "=MAX(plage)", example: "=MAX(A1:A3)", uiData: { h: ['A (Values)'], b: [['5'], ['50'], ['12']], target: 'A4', result: '50' }, detail: "تحدد أعلى رقم في القائمة." }
+                ],
+                quiz: {
+                    q: "أوجد أكبر قيمة (الحد الأقصى) في نطاق الخلايا من A1 إلى A4.",
+                    table: { h: ['A (Scores)'], b: [['85'], ['92'], ['78'], ['95']] },
+                    correct: ["=MAX(A1:A4)"], points: 10
+                }
+            },
+            date: { name: "التاريخ", icon: "📅", color: "indigo", 
+                functions: [
+                    { name: "ANNEE", desc: "استخراج رقم السنة من تاريخ.", syntax: "=ANNEE(date)", example: "=ANNEE(A1)", uiData: { h: ['A (Date)'], b: [['20/05/2024']], target: 'B1', result: '2024' }, detail: "تستخرج السنة فقط كرقم." }
+                ],
+                quiz: {
+                    q: "استخرج رقم 'السنة' من التاريخ الموجود في الخلية A1.",
+                    table: { h: ['A (Date)'], b: [['18/12/2025']] },
+                    correct: ["=ANNEE(A1)"], points: 10
+                }
+            }
         };
 
-        const functionsData = [
-            // --- MATHÉMATIQUES (9) ---
-            { cat: 'math', name: 'SOMME', desc: 'جمع كافة الأرقام في نطاق من الخلايا.', syntax: '=SOMME(A1:B10)', example: { h: ['A','B'], b: [['10','20'],['Total','=SOMME(A1:B1)']] }, note: 'النتيجة 30.' },
-            { cat: 'math', name: 'PRODUIT', desc: 'ضرب كافة الأرقام المعطاة.', syntax: '=PRODUIT(A1:B1)', example: { h: ['A','B'], b: [['5','4'],['Rés','=PRODUIT(A1:B1)']] }, note: 'النتيجة 20.' },
-            { cat: 'math', name: 'ARRONDI', desc: 'تقريب رقم لعدد محدد من الأرقام بعد الفاصلة.', syntax: '=ARRONDI(nombre; num_chiffres)', example: { h: ['Val','Rés'], b: [['10,556','=ARRONDI(A1;1)']] }, note: 'النتيجة 10,6.' },
-            { cat: 'math', name: 'ABS', desc: 'إرجاع القيمة المطلقة لرقم.', syntax: '=ABS(-5)', example: { h: ['Val','Rés'], b: [['-25','=ABS(A1)']] }, note: 'النتيجة 25.' },
-            { cat: 'math', name: 'SOMME.SI', desc: 'جمع الخلايا بناءً على شرط واحد.', syntax: '=SOMME.SI(plage; critère; [plage_somme])', example: { h: ['Art','Prix'], b: [['A','10'],['B','20'],['Total A','=SOMME.SI(A1:A2;"A";B1:B2)']] }, note: 'يجمع أسعار الصنف A فقط.' },
-            { cat: 'math', name: 'ENT', desc: 'تقريب الرقم لأسفل إلى أقرب عدد صحيح.', syntax: '=ENT(8,9)', example: { h: ['Val','Rés'], b: [['8,9','=ENT(A1)']] }, note: 'النتيجة 8.' },
-            { cat: 'math', name: 'MOD', desc: 'إرجاع باقي القسمة.', syntax: '=MOD(nombre; diviseur)', example: { h: ['A','B','Reste'], b: [['10','3','=MOD(A1;B1)']] }, note: 'باقي قسمة 10 على 3 هو 1.' },
-            { cat: 'math', name: 'PUISSANCE', desc: 'رفع الرقم لأس معين.', syntax: '=PUISSANCE(nombre; puissance)', example: { h: ['Base','Exp','Rés'], b: [['2','3','=PUISSANCE(A1;B1)']] }, note: '2 أس 3 يساوي 8.' },
-            { cat: 'math', name: 'RACINE', desc: 'إرجاع الجذر التربيعي الموجب.', syntax: '=RACINE(nombre)', example: { h: ['Val','Rés'], b: [['16','=RACINE(A1)']] }, note: 'النتيجة 4.' },
-
-            // --- LOGIQUE (8) ---
-            { cat: 'logic', name: 'SI', desc: 'الشرط البسيط: إذا كان كذا، افعل كذا.', syntax: '=SI(test; si_vrai; si_faux)', example: { h: ['Moy','Etat'], b: [['12','=SI(A1>=10;"Admis";"Refusé")']] }, note: 'يعيد Admis لأن 12 > 10.' },
-            { cat: 'logic', name: 'ET', desc: 'يتحقق من صحة جميع الشروط.', syntax: '=ET(cond1; cond2)', example: { h: ['A','B','Valide'], b: [['15','20','=ET(A1>10;B1>10)']] }, note: 'يعيد VRAI.' },
-            { cat: 'logic', name: 'OU', desc: 'يتحقق من صحة شرط واحد على الأقل.', syntax: '=OU(cond1; cond2)', example: { h: ['A','B','Valide'], b: [['5','12','=OU(A1>10;B1>10)']] }, note: 'يعيد VRAI لأن 12 > 10.' },
-            { cat: 'logic', name: 'NON', desc: 'يعكس القيمة المنطقية.', syntax: '=NON(logique)', example: { h: ['Val','Inv'], b: [['VRAI','=NON(A1)']] }, note: 'النتيجة FAUX.' },
-            { cat: 'logic', name: 'SI.ERREUR', desc: 'يعالج الأخطاء في المعادلات.', syntax: '=SI.ERREUR(valeur; message)', example: { h: ['A','B','Div'], b: [['10','0','=SI.ERREUR(A1/B1;"Erreur")']] }, note: 'يعرض Erreur بدلاً من #DIV/0!.' },
-            { cat: 'logic', name: 'SI.CONDITIONS', desc: 'شروط متعددة دون تداخل SI.', syntax: '=SI.CONDITIONS(test1; v1; test2; v2)', example: { h: ['Note','App'], b: [['18','=SI.CONDITIONS(A1>16;"Exc";A1>10;"Pass")']] }, note: 'النتيجة Exc.' },
-            { cat: 'logic', name: 'VRAI', desc: 'إرجاع القيمة المنطقية VRAI.', syntax: '=VRAI()', example: { h: ['Statut'], b: [['=VRAI()']] }, note: 'تستخدم في الاختبارات المنطقية.' },
-            { cat: 'logic', name: 'FAUX', desc: 'إرجاع القيمة المنطقية FAUX.', syntax: '=FAUX()', example: { h: ['Statut'], b: [['=FAUX()']] }, note: 'تستخدم في الاختبارات المنطقية.' },
-
-            // --- TEXTE (9) ---
-            { cat: 'text', name: 'CONCAT', desc: 'دمج نصوص من عدة خلايا.', syntax: '=CONCAT(A1; B1)', example: { h: ['Nom','Prénom','Rés'], b: [['Ali','Baba','=CONCAT(A1;" ";B1)']] }, note: 'النتيجة Ali Baba.' },
-            { cat: 'text', name: 'GAUCHE', desc: 'استخراج أحرف من يسار النص.', syntax: '=GAUCHE(texte; nb)', example: { h: ['Mot','Rés'], b: [['Excel','=GAUCHE(A1;2)']] }, note: 'النتيجة Ex.' },
-            { cat: 'text', name: 'DROITE', desc: 'استخراج أحرف من يمين النص.', syntax: '=DROITE(texte; nb)', example: { h: ['Mot','Rés'], b: [['Excel','=DROITE(A1;2)']] }, note: 'النتيجة el.' },
-            { cat: 'text', name: 'STXT', desc: 'استخراج نص من وسط السلسلة.', syntax: '=STXT(texte; debut; nb)', example: { h: ['Mot','Rés'], b: [['Microsoft','=STXT(A1;6;4)']] }, note: 'يستخرج soft.' },
-            { cat: 'text', name: 'NBCAR', desc: 'حساب عدد الأحرف.', syntax: '=NBCAR(A1)', example: { h: ['Mot','Long'], b: [['Data','=NBCAR(A1)']] }, note: 'النتيجة 4.' },
-            { cat: 'text', name: 'MAJUSCULE', desc: 'تحويل النص إلى حروف كبيرة.', syntax: '=MAJUSCULE("abc")', example: { h: ['Mot','Grand'], b: [['excel','=MAJUSCULE(A1)']] }, note: 'النتيجة EXCEL.' },
-            { cat: 'text', name: 'MINUSCULE', desc: 'تحويل النص إلى حروف صغيرة.', syntax: '=MINUSCULE("ABC")', example: { h: ['Mot','Petit'], b: [['EXCEL','=MINUSCULE(A1)']] }, note: 'النتيجة excel.' },
-            { cat: 'text', name: 'NOMPROPRE', desc: 'جعل الحرف الأول كبيراً.', syntax: '=NOMPROPRE("ali baba")', example: { h: ['Texte','Rés'], b: [['ali baba','=NOMPROPRE(A1)']] }, note: 'النتيجة Ali Baba.' },
-            { cat: 'text', name: 'SUPPRESPACE', desc: 'حذف المسافات الزائدة.', syntax: '=SUPPRESPACE(A1)', example: { h: ['Texte','Net'], b: [['  Ali  ','=SUPPRESPACE(A1)']] }, note: 'يحذف المسافات من الجانبين.' },
-
-            // --- RECHERCHE (8) ---
-            { cat: 'lookup', name: 'RECHERCHEV', desc: 'البحث العمودي في الجدول.', syntax: '=RECHERCHEV(val; table; col; 0)', example: { h: ['ID','Nom'], b: [['101','PC'],['102','TEL'],['Find','=RECHERCHEV(101;A1:B2;2;0)']] }, note: 'يعيد PC.' },
-            { cat: 'lookup', name: 'RECHERCHEH', desc: 'البحث الأفقي في الجدول.', syntax: '=RECHERCHEH(val; table; lig; 0)', example: { h: ['ID','1','2'], b: [['Val','A','B'],['Find','=RECHERCHEH("1";A1:C2;2;0)']] }, note: 'يبحث في الصفوف.' },
-            { cat: 'lookup', name: 'INDEX', desc: 'إرجاع قيمة بموضع محدد (صف/عمود).', syntax: '=INDEX(matrice; lig; col)', example: { h: ['X','Y'], b: [['A','B'],['C','D'],['Pos','=INDEX(A1:B2;2;1)']] }, note: 'يعيد C (صف 2، عمود 1).' },
-            { cat: 'lookup', name: 'EQUIV', desc: 'إرجاع رقم موضع قيمة في نطاق.', syntax: '=EQUIV(val; plage; 0)', example: { h: ['Items','Pos'], b: [['PC'],['TEL'],['TV'],['=EQUIV("TEL";A1:A3;0)']] }, note: 'النتيجة 2.' },
-            { cat: 'lookup', name: 'TRANSPOSE', desc: 'قلب الجدول من صفوف لأعمدة.', syntax: '{=TRANSPOSE(A1:B2)}', example: { h: ['A','B'], b: [['1','2'],['3','4'],['Trans','=TRANSPOSE(A1:B2)']] }, note: 'دالة مصفوفة.' },
-            { cat: 'lookup', name: 'COLONNE', desc: 'إرجاع رقم العمود.', syntax: '=COLONNE(A1)', example: { h: ['Col'], b: [['=COLONNE()']] }, note: 'يرجع رقم العمود الحالي.' },
-            { cat: 'lookup', name: 'LIGNE', desc: 'إرجاع رقم الصف.', syntax: '=LIGNE(A1)', example: { h: ['Ligne'], b: [['=LIGNE()']] }, note: 'يرجع رقم الصف الحالي.' },
-            { cat: 'lookup', name: 'RECHERCHEX', desc: 'الدالة الأحدث والأقوى للبحث.', syntax: '=RECHERCHEX(val; plage_recherche; plage_résultat)', example: { h: ['Nom','Salaire'], b: [['Ali','1000'],['Recherche','=RECHERCHEX("Ali";A1:A1;B1:B1)']] }, note: 'أفضل بديل لـ RECHERCHEV.' },
-
-            // --- STATISTIQUES (9) ---
-            { cat: 'stat', name: 'MOYENNE', desc: 'المتوسط الحسابي.', syntax: '=MOYENNE(A1:A10)', example: { h: ['Val'], b: [['10'],['20'],['Moy','=MOYENNE(A1:A2)']] }, note: 'النتيجة 15.' },
-            { cat: 'stat', name: 'NB', desc: 'حساب عدد الخلايا الرقمية.', syntax: '=NB(A1:A10)', example: { h: ['V'], b: [['1'],['T'],['3'],['Count','=NB(A1:A3)']] }, note: 'النتيجة 2.' },
-            { cat: 'stat', name: 'NBVAL', desc: 'حساب الخلايا غير الفارغة.', syntax: '=NBVAL(A1:A10)', example: { h: ['V'], b: [['1'],['T'],[''],['Count','=NBVAL(A1:A3)']] }, note: 'النتيجة 2.' },
-            { cat: 'stat', name: 'MAX', desc: 'أكبر قيمة.', syntax: '=MAX(A1:A5)', example: { h: ['V'], b: [['5'],['12'],['8'],['Max','=MAX(A1:A3)']] }, note: 'النتيجة 12.' },
-            { cat: 'stat', name: 'MIN', desc: 'أصغر قيمة.', syntax: '=MIN(A1:A5)', example: { h: ['V'], b: [['5'],['12'],['8'],['Min','=MIN(A1:A3)']] }, note: 'النتيجة 5.' },
-            { cat: 'stat', name: 'NB.SI', desc: 'عد الخلايا بشرط.', syntax: '=NB.SI(plage; critère)', example: { h: ['Genre'], b: [['M'],['F'],['M'],['Count M','=NB.SI(A1:A3;"M")']] }, note: 'النتيجة 2.' },
-            { cat: 'stat', name: 'MEDIANE', desc: 'إرجاع الوسيط لمجموعة أرقام.', syntax: '=MEDIANE(1;2;3;4;5)', example: { h: ['Vals'], b: [['10'],['20'],['30'],['Med','=MEDIANE(A1:A3)']] }, note: 'النتيجة 20.' },
-            { cat: 'stat', name: 'RANG', desc: 'رتبة رقم في قائمة.', syntax: '=RANG(val; plage)', example: { h: ['Note'], b: [['15'],['18'],['12'],['Rang 18','=RANG(A2;A1:A3)']] }, note: 'النتيجة 1.' },
-            { cat: 'stat', name: 'ECART.TYPE', desc: 'الانحراف المعياري.', syntax: '=ECART.TYPE(A1:A10)', example: { h: ['Val'], b: [['10'],['12'],['14'],['Ecart','=ECART.TYPE(A1:A3)']] }, note: 'يقيس تشتت البيانات.' },
-
-            // --- DATE & HEURE (7) ---
-            { cat: 'date', name: 'AUJOURDHUI', desc: 'تاريخ اليوم.', syntax: '=AUJOURDHUI()', example: { h: ['Date'], b: [['=AUJOURDHUI()']] }, note: 'تاريخ متغير.' },
-            { cat: 'date', name: 'MAINTENANT', desc: 'التاريخ والوقت الآن.', syntax: '=MAINTENANT()', example: { h: ['Maintenant'], b: [['=MAINTENANT()']] }, note: 'يتضمن الساعة.' },
-            { cat: 'date', name: 'ANNEE', desc: 'استخراج السنة من التاريخ.', syntax: '=ANNEE("15/12/2023")', example: { h: ['Date','An'], b: [['15/12/2023','=ANNEE(A1)']] }, note: 'النتيجة 2023.' },
-            { cat: 'date', name: 'MOIS', desc: 'استخراج الشهر (1-12).', syntax: '=MOIS(A1)', example: { h: ['Date','Mois'], b: [['15/12/2023','=MOIS(A1)']] }, note: 'النتيجة 12.' },
-            { cat: 'date', name: 'JOUR', desc: 'استخراج يوم الشهر.', syntax: '=JOUR(A1)', example: { h: ['Date','Jour'], b: [['15/12/2023','=JOUR(A1)']] }, note: 'النتيجة 15.' },
-            { cat: 'date', name: 'JOURSEM', desc: 'رقم يوم الأسبوع (1-7).', syntax: '=JOURSEM(A1)', example: { h: ['Date','JS'], b: [['18/12/2025','=JOURSEM(A1)']] }, note: 'يعتمد على إعدادات النظام.' },
-            { cat: 'date', name: 'DATE', desc: 'تجميع تاريخ من أرقام.', syntax: '=DATE(2025;12;18)', example: { h: ['A','M','J','Date'], b: [['2025','12','18','=DATE(A1;B1;C1)']] }, note: 'تجميع العناصر.' }
-        ];
+        let currentQuizQueue = [];
+        let currentStep = 0;
+        let sessionScore = 0;
+        let totalPoints = parseInt(localStorage.getItem('excelPoints') || 0);
+        let activeLibraryCat = 'math';
 
         function init() {
+            // Restore Dark Mode
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('darkIcon').classList.remove('hidden');
+                document.getElementById('lightIcon').classList.add('hidden');
+            }
+
             const grid = document.getElementById('categoriesGrid');
+            if(grid) {
+                grid.innerHTML = '';
+                Object.keys(categories).forEach(key => {
+                    const cat = categories[key];
+                    const div = document.createElement('div');
+                    div.className = `bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-b-4 border-${cat.color}-500 flex flex-col items-center cursor-pointer active:scale-95 transition-all hover:shadow-md`;
+                    div.onclick = () => startSingleQuiz(key);
+                    div.innerHTML = `<span class="text-3xl mb-2">${cat.icon}</span><span class="font-bold text-gray-800 dark:text-white text-sm">${cat.name}</span>`;
+                    grid.appendChild(div);
+                });
+            }
+            document.getElementById('userPoints').innerText = totalPoints;
+            buildLibraryTabs();
+            populateSearchList();
+            updateFloatingButtonVisibility();
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            const darkIcon = document.getElementById('darkIcon');
+            const lightIcon = document.getElementById('lightIcon');
+            
+            if (isDark) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            }
+        }
+
+        function populateSearchList() {
+            const select = document.getElementById('functionSearch');
+            if (!select) return;
+            let allFuncs = [];
+            Object.keys(categories).forEach(catKey => {
+                categories[catKey].functions.forEach(f => {
+                    allFuncs.push({ name: f.name, cat: catKey });
+                });
+            });
+            allFuncs.sort((a, b) => a.name.localeCompare(b.name));
+            select.innerHTML = '<option value="">اختر دالة للمعاينة...</option>';
+            allFuncs.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = `${item.cat}|${item.name}`;
+                opt.innerText = item.name;
+                select.appendChild(opt);
+            });
+        }
+
+        function searchFunction(value) {
+            if (!value) return;
+            const [catKey, funcName] = value.split('|');
+            activeLibraryCat = catKey;
+            buildLibraryTabs();
+            renderLibraryContent(catKey);
+            setTimeout(() => {
+                const element = document.getElementById(`func-card-${funcName}`);
+                if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        function buildLibraryTabs() {
+            const tabsContainer = document.getElementById('libraryTabs');
+            tabsContainer.innerHTML = '';
             Object.keys(categories).forEach(key => {
                 const cat = categories[key];
-                const count = functionsData.filter(f => f.cat === key).length;
-                const div = document.createElement('div');
-                div.className = `bg-white p-5 rounded-2xl shadow-sm border-b-4 border-${cat.color}-500 flex flex-col items-center cursor-pointer active:scale-95 transition-transform`;
-                div.onclick = () => showCategory(key);
-                div.innerHTML = `
-                    <span class="text-3xl mb-2">${cat.icon}</span>
-                    <span class="font-bold text-gray-800 text-sm">${cat.name}</span>
-                    <span class="text-[10px] text-gray-400 mt-1">${count} دوال</span>
-                `;
-                grid.appendChild(div);
+                const btn = document.createElement('button');
+                btn.className = `category-tab px-4 py-2 whitespace-nowrap transition-all ${activeLibraryCat === key ? 'active' : 'text-gray-400'}`;
+                btn.onclick = () => {
+                    activeLibraryCat = key;
+                    buildLibraryTabs();
+                    renderLibraryContent(key);
+                };
+                btn.innerText = `${cat.icon} ${cat.name}`;
+                tabsContainer.appendChild(btn);
             });
-
-            document.getElementById('searchToggle').onclick = () => {
-                const bar = document.getElementById('searchBarContainer');
-                bar.classList.toggle('hidden');
-                if(!bar.classList.contains('hidden')) document.getElementById('searchInput').focus();
-            };
-
-            document.getElementById('searchInput').oninput = (e) => {
-                const term = e.target.value.toUpperCase();
-                if(term.length > 0) {
-                    const filtered = functionsData.filter(f => f.name.includes(term));
-                    renderList("نتائج البحث", filtered);
-                } else {
-                    goHome();
-                }
-            };
         }
 
-        function showCategory(key) {
-            const filtered = functionsData.filter(f => f.cat === key);
-            renderList(categories[key].name, filtered);
-        }
-
-        function renderList(title, list) {
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('functionDetail').classList.add('hidden');
-            document.getElementById('functionList').classList.remove('hidden');
-            document.getElementById('categoryTitle').innerText = title;
-
-            const container = document.getElementById('listContainer');
-            container.innerHTML = '';
-            list.forEach(func => {
-                const item = document.createElement('div');
-                item.className = "bg-white p-4 rounded-xl shadow-sm border-r-4 border-excel-green flex justify-between items-center cursor-pointer";
-                item.onclick = () => showDetail(func);
-                item.innerHTML = `
-                    <div class="w-full">
-                        <div class="font-bold text-gray-800 ltr uppercase flex justify-between">
-                            <span>${func.name}</span>
-                            <span class="text-[10px] text-gray-300 font-normal">${categories[func.cat]?.name || ''}</span>
-                        </div>
-                        <div class="text-[11px] text-gray-500 mt-1 truncate">${func.desc}</div>
+        function renderLibraryContent(catKey) {
+            const libContent = document.getElementById('libraryContent');
+            const cat = categories[catKey];
+            libContent.innerHTML = '';
+            cat.functions.forEach(func => {
+                const card = document.createElement('div');
+                card.id = `func-card-${func.name}`;
+                card.className = `bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border-r-8 border-${cat.color}-500 mb-6`;
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-black text-2xl text-${cat.color}-600">f() ${func.name}</h4>
                     </div>
+                    <p class="text-gray-800 dark:text-gray-200 text-lg mb-6 font-bold text-right">${func.desc}</p>
+                    <div class="excel-ui-box mb-4">
+                        <div class="excel-formula-bar ltr"><span class="text-green-600">fx</span> | ${func.example}</div>
+                        <div class="p-2 bg-slate-50 dark:bg-gray-900">
+                             <table class="excel-grid w-full">
+                                <thead><tr><th></th>${func.uiData.h.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+                                <tbody>${func.uiData.b.map((row, i) => `<tr><th>${i+1}</th>${row.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+                             </table>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-xl ltr mb-4">
+                        <code class="text-blue-700 dark:text-blue-300 font-bold">${func.syntax}</code>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 text-right font-medium">${func.detail}</p>
                 `;
-                container.appendChild(item);
+                libContent.appendChild(card);
             });
         }
 
-        function showDetail(func) {
-            document.getElementById('functionList').classList.add('hidden');
-            document.getElementById('functionDetail').classList.remove('hidden');
-            
-            document.getElementById('detailName').innerText = func.name;
-            document.getElementById('detailCategory').innerText = categories[func.cat]?.name || 'Divers';
-            document.getElementById('detailDesc').innerText = func.desc;
-            document.getElementById('detailSyntax').innerText = func.syntax;
-            document.getElementById('detailNote').querySelector('p').innerText = func.note;
-
-            const header = document.getElementById('excelHeader');
-            const body = document.getElementById('excelBody');
-            header.innerHTML = '<tr><th></th>' + func.example.h.map(col => `<th>${col}</th>`).join('') + '</tr>';
-            body.innerHTML = func.example.b.map((row, idx) => {
-                return `<tr><th>${idx+1}</th>` + row.map(cell => {
-                    const isFormula = cell.startsWith('=');
-                    return `<td class="${isFormula ? 'bg-yellow-50 text-blue-600 font-bold' : ''}">${cell}</td>`;
-                }).join('') + '</tr>';
-            }).join('');
-            window.scrollTo(0,0);
+        function toggleLibrary() {
+            const dash = document.getElementById('dashboard');
+            const lib = document.getElementById('libraryView');
+            if (lib.classList.contains('hidden')) {
+                dash.classList.add('hidden');
+                lib.classList.remove('hidden');
+                renderLibraryContent(activeLibraryCat);
+            } else {
+                lib.classList.add('hidden');
+                dash.classList.remove('hidden');
+            }
+            updateFloatingButtonVisibility();
         }
 
-        function backToList() {
-            document.getElementById('functionDetail').classList.add('hidden');
-            document.getElementById('functionList').classList.remove('hidden');
+        function startFullQuiz() {
+            currentQuizQueue = Object.keys(categories);
+            currentStep = 0; sessionScore = 0; showQuiz();
+        }
+
+        function startSingleQuiz(key) {
+            currentQuizQueue = [key];
+            currentStep = 0; sessionScore = 0; showQuiz();
+        }
+
+        function showQuiz() {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('libraryView').classList.add('hidden');
+            document.getElementById('resultView').classList.add('hidden');
+            document.getElementById('quizView').classList.remove('hidden');
+            loadQuestion();
+            updateFloatingButtonVisibility();
+        }
+
+        function loadQuestion() {
+            const catKey = currentQuizQueue[currentStep];
+            const data = categories[catKey];
+            const quiz = data.quiz;
+            document.getElementById('quizCatName').innerText = data.name;
+            document.getElementById('quizStepCounter').innerText = `${currentStep + 1} / ${currentQuizQueue.length}`;
+            document.getElementById('quizQuestion').innerText = quiz.q;
+            document.getElementById('quizInput').value = "";
+            document.getElementById('quizFeedback').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+            document.getElementById('submitBtn').classList.remove('hidden');
+            const table = document.getElementById('quizTable');
+            table.innerHTML = `<thead><tr><th></th>${quiz.table.h.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+                               <tbody>${quiz.table.b.map((r, i) => `<tr><th>${i+1}</th>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('quizInput').value.trim().replace(/\s/g, '').toUpperCase();
+            const quiz = categories[currentQuizQueue[currentStep]].quiz;
+            const feedback = document.getElementById('quizFeedback');
+            const isCorrect = quiz.correct.some(ans => ans.replace(/\s/g, '').toUpperCase() === input);
+            feedback.classList.remove('hidden', 'success-bg', 'error-bg');
+            if(isCorrect) {
+                feedback.innerText = "رائع! إجابة صحيحة ✅";
+                feedback.classList.add('success-bg');
+                sessionScore += quiz.points;
+                totalPoints += quiz.points;
+                updatePoints();
+                document.getElementById('submitBtn').classList.add('hidden');
+                document.getElementById('nextBtn').classList.remove('hidden');
+            } else {
+                feedback.innerText = "للأسف، الصيغة خاطئة ❌";
+                feedback.classList.add('error-bg');
+            }
+        }
+
+        function nextQuestion() {
+            if(currentStep < currentQuizQueue.length - 1) {
+                currentStep++; loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('resultView').classList.remove('hidden');
+            document.getElementById('finalScore').innerText = sessionScore;
+            updateFloatingButtonVisibility();
+        }
+
+        function updatePoints() {
+            document.getElementById('userPoints').innerText = totalPoints;
+            localStorage.setItem('excelPoints', totalPoints);
         }
 
         function goHome() {
-            document.getElementById('functionList').classList.add('hidden');
-            document.getElementById('functionDetail').classList.add('hidden');
+            document.getElementById('quizView').classList.add('hidden');
+            document.getElementById('resultView').classList.add('hidden');
+            document.getElementById('libraryView').classList.add('hidden');
             document.getElementById('dashboard').classList.remove('hidden');
-            document.getElementById('searchBarContainer').classList.add('hidden');
+            updateFloatingButtonVisibility();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateFloatingButtonVisibility() {
+            const floatingBtn = document.getElementById('floatingHome');
+            const dash = document.getElementById('dashboard');
+            if (dash.classList.contains('hidden')) floatingBtn.classList.add('visible');
+            else floatingBtn.classList.remove('visible');
         }
 
         window.onload = init;
     </script>
 </body>
+</html>   
