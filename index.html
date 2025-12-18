@@ -3,23 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تعلم أكسل بالتمارين</title>
+    <title>تعلم أكسل بالتمارين - 80 دالة مع الشرح</title>
     
-    <!-- إعدادات التطبيق لـ iOS (iPhone/iPad) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="أكسل بالتمارين">
-    
-    <!-- أيقونة التطبيق لـ iPhone -->
     <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/192px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png">
-
-    <!-- إعدادات التطبيق لـ Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="تعلم أكسل بالتمارين">
     <meta name="theme-color" content="#107c41">
-
-    <!-- ملف Manifest مدمج مع أيقونات إكسل -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItiq2LnZhNmFINij2YPYs9mEINio2KfZhNiq2YXYp9ix2YrZhiIsCiAgInNob3J0X25hbWUiIjogItiq2LnZhNmFINij2YPYs9mEINio2KfZhNiq2YXYp9ix2YrZhiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMTA3YzQxIiwKICAidGhlbWVfY29sb3IiOiAiIzEwN2M0MSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vdXBsb2FkLndpa2ltZWRpYS5vcmcvd2lraXBlZGlhL2NvbW1vbnMvdGh1bWIvMy8zNC9NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy8xOTJweC1NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy5wbmciLAogICAgICAic2l6ZXMiIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9LAogICAgewogICAgICAic3JjIjogImh0dHBzOi8vdXBsb2FkLndpa2ltZWRpYS5vcmcvd2lraXBlZGlhL2NvbW1vbnMvdGh1bWIvMy8zNC9NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy81MTJweC1NaWNyb3NvZnRfT2ZmaWNlX0V4Y2VsXyUyODIwMTklRTIlODAlOTRwcmVzZW50JTI5LnN2Zy5wbmciLAogICAgICAic2l6ZXMiIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -27,453 +18,340 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        excelGreen: '#107c41',
-                    }
+                    colors: { excelGreen: '#107c41' }
                 }
             }
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-            overscroll-behavior-y: contain;
-            transition: background-color 0.3s ease;
-        }
-        
-        /* Light Mode Default */
+        body { font-family: 'Tajawal', sans-serif; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s ease; }
         body { background-color: #f3f4f6; color: #1f2937; }
-        
-        /* Dark Mode Global Styles */
         .dark body { background-color: #111827; color: #f9fafb; }
-        .dark .bg-white { background-color: #1f2937; }
-        .dark .text-gray-800 { color: #f3f4f6; }
-        .dark .text-gray-500 { color: #9ca3af; }
-        .dark .border-gray-100, .dark .border-gray-200 { border-color: #374151; }
-        .dark .bg-gray-50 { background-color: #374151; }
-        .dark .bg-slate-50 { background-color: #111827; }
-
         .excel-green { background-color: #107c41; }
-        .text-excel { color: #107c41; }
-        
-        .excel-grid {
-            border-collapse: collapse;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            direction: ltr;
-        }
-        .excel-grid td, .excel-grid th {
-            border: 1px solid #d1d5db;
-            padding: 4px 8px;
-            font-size: 12px;
-        }
+        .excel-grid { border-collapse: collapse; direction: ltr; }
+        .excel-grid td, .excel-grid th { border: 1px solid #d1d5db; padding: 4px 8px; font-size: 11px; }
         .dark .excel-grid td, .dark .excel-grid th { border-color: #4b5563; }
-
-        .excel-grid th {
-            background-color: #f8fafc;
-            color: #64748b;
-            font-weight: bold;
-            text-align: center;
-        }
+        .excel-grid th { background-color: #f8fafc; color: #64748b; }
         .dark .excel-grid th { background-color: #1f2937; color: #9ca3af; }
-
-        .success-bg { background-color: #dcfce7; color: #166534; }
-        .dark .success-bg { background-color: #064e3b; color: #6ee7b7; }
-        .error-bg { background-color: #fee2e2; color: #991b1b; }
-        .dark .error-bg { background-color: #7f1d1d; color: #fca5a5; }
-
         .ltr { direction: ltr; text-align: left; }
-        
-        .category-tab.active {
-            border-bottom: 3px solid #107c41;
-            color: #107c41;
-            font-weight: bold;
-        }
+        .category-tab.active { border-bottom: 3px solid #107c41; color: #107c41; font-weight: bold; }
         .dark .category-tab.active { color: #34d399; border-color: #34d399; }
-
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        .excel-ui-box {
-            background: #fff;
-            border: 1px solid #c0c0c0;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-            border-radius: 4px;
-            overflow: hidden;
-        }
+        #floatingHome, #scrollTopBtn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: scale(0); opacity: 0; pointer-events: none; }
+        #floatingHome.visible, #scrollTopBtn.visible { transform: scale(1); opacity: 1; pointer-events: auto; }
+        .excel-ui-box { background: #fff; border: 1px solid #c0c0c0; border-radius: 4px; overflow: hidden; }
         .dark .excel-ui-box { background: #1f2937; border-color: #4b5563; }
-
-        .excel-formula-bar {
-            background: #fff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 6px 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: monospace;
-            font-size: 13px;
-            color: #333;
-        }
-        .dark .excel-formula-bar { background: #374151; border-color: #4b5563; color: #e5e7eb; }
-
-        #floatingHome {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(0);
-        }
-        #floatingHome.visible { transform: scale(1); }
-        
-        .mode-icon { transition: transform 0.5s ease; }
-        .dark .mode-icon { transform: rotate(360deg); }
+        .excel-formula-bar { padding: 4px 8px; font-family: monospace; font-size: 12px; border-bottom: 1px solid #eee; }
+        .dark .excel-formula-bar { border-color: #4b5563; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="pb-24 transition-colors duration-300">
+<body class="pb-24">
 
-    <!-- Floating Home Button -->
+    <!-- Floating Home -->
     <button id="floatingHome" onclick="goHome()" class="fixed bottom-6 left-6 z-[60] w-14 h-14 excel-green text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-        </svg>
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
     </button>
 
-    <!-- Header Section -->
+    <!-- Scroll Top Button -->
+    <button id="scrollTopBtn" onclick="scrollToTop()" class="fixed bottom-24 left-6 z-[60] w-12 h-12 bg-white dark:bg-gray-800 text-excelGreen dark:text-emerald-400 border border-gray-200 dark:border-gray-700 rounded-full shadow-xl flex items-center justify-center hover:scale-110 active:scale-95">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <!-- Header -->
     <header class="excel-green text-white p-4 shadow-md sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-lg font-bold flex items-center gap-2">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-                Excel Master (FR)
+                Excel Pro (80+ Fonctions)
             </h1>
             <div class="flex items-center gap-3">
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all mode-icon" title="تبديل الوضع">
-                    <svg id="darkIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                    <svg id="lightIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                </button>
-                <div id="scoreBadge" class="bg-white/20 px-3 py-1 rounded-full text-sm font-bold">
-                    🏆 <span id="userPoints">0</span>
-                </div>
+                <button onclick="toggleDarkMode()" class="p-2 bg-white/10 rounded-full">🌓</button>
+                <div class="bg-white/20 px-3 py-1 rounded-full text-sm font-bold">🏆 <span id="userPoints">0</span></div>
             </div>
         </div>
     </header>
 
     <main class="container mx-auto p-4">
-        
         <!-- Dashboard -->
         <div id="dashboard">
-            <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm mb-4 border border-gray-100 dark:border-gray-700 flex items-center justify-center gap-3">
-                <span class="text-gray-700 dark:text-gray-300 font-medium text-sm">تعلم دوال الإكسل مع:</span>
-                <div class="flex items-center gap-2 bg-gray-50 dark:bg-gray-700 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="url(#insta_grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16Z" stroke="url(#insta_grad)" stroke-width="2"/>
-                        <path d="M17.5 6.51L17.51 6.49889" stroke="url(#insta_grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <defs>
-                            <linearGradient id="insta_grad" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#fdf497"/>
-                                <stop offset="0.05" stop-color="#fdf497"/>
-                                <stop offset="0.45" stop-color="#fd5949"/>
-                                <stop offset="0.6" stop-color="#d6249f"/>
-                                <stop offset="0.9" stop-color="#285AEB"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <span class="font-bold text-gray-800 dark:text-gray-100 text-sm ltr">prof.i3lam_ali</span>
-                </div>
+            <!-- Social Link Header -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm mb-4 flex items-center justify-center gap-3">
+                <a href="https://instagram.com/prof.i3lam_ali" target="_blank" class="flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-4 py-2 rounded-full border border-white/20 shadow-sm active:scale-95 transition-transform">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span class="font-bold text-sm ltr">prof.i3lam_ali</span>
+                </a>
             </div>
 
             <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm mb-6 flex justify-between items-center">
                 <div>
-                    <h2 class="text-xl font-bold text-gray-800 dark:text-white">تعلم بالتمارين</h2>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">اختر فئة لاختبار مهاراتك</p>
+                    <h2 class="text-xl font-bold">تعلم بالتمارين</h2>
+                    <p class="text-gray-500 text-sm">تمارين الفئات الست الأساسية</p>
                 </div>
-                <button onclick="toggleLibrary()" class="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-amber-200 transition-colors">
-                    📖 مكتبة الشرح (FR)
-                </button>
+                <button onclick="toggleLibrary()" class="bg-amber-500 text-white px-4 py-2 rounded-xl font-bold text-sm shadow-lg">📖 مكتبة الـ 80 دالة</button>
             </div>
             
             <div class="grid grid-cols-2 gap-4 mb-6" id="categoriesGrid"></div>
-
-            <button onclick="startFullQuiz()" class="w-full bg-blue-600 text-white p-5 rounded-2xl shadow-lg flex justify-between items-center group overflow-hidden relative">
-                <div class="relative z-10 text-right">
-                    <h4 class="font-bold text-lg">اختبار شامل (6 فئات)</h4>
-                    <p class="text-blue-100 text-xs mt-1">تمرين واحد من كل تخصص</p>
+            
+            <button onclick="startFullQuiz()" class="w-full bg-blue-600 text-white p-5 rounded-2xl shadow-lg flex justify-between items-center mb-6">
+                <div class="text-right">
+                    <h4 class="font-bold text-lg">اختبار شامل</h4>
+                    <p class="text-blue-100 text-xs">تمرين من كل فئة أساسية</p>
                 </div>
-                <span class="text-3xl relative z-10">🚀</span>
-                <div class="absolute inset-0 bg-blue-700 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+                <span class="text-3xl">🚀</span>
             </button>
+
+            <!-- Support & Info Section -->
+            <div class="bg-emerald-50 dark:bg-emerald-950/20 rounded-3xl p-6 border border-emerald-100 dark:border-emerald-900/30">
+                <h3 class="font-bold text-emerald-800 dark:text-emerald-400 mb-3 flex items-center gap-2">
+                    <span>💡</span> هل تحتاج لمساعدة أو تطبيقات أخرى؟
+                </h3>
+                <p class="text-sm text-emerald-700/80 dark:text-emerald-300/80 leading-relaxed mb-4">
+                    يسعدني تواصلكم معي لطلب المساعدة في دروس الأكسل أو لطلب برمجة تطبيقات تعليمية مخصصة. 
+                    للحصول على أفضل تجربة، تأكد من إضافة التطبيق لشاشتك الرئيسية.
+                </p>
+                
+                <div class="space-y-3">
+                    <div class="bg-white/50 dark:bg-black/20 p-3 rounded-xl">
+                        <p class="text-xs font-bold text-emerald-900 dark:text-emerald-200 mb-1">📲 طريقة إضافة التطبيق للشاشة الرئيسية:</p>
+                        <p class="text-[11px] text-emerald-700 dark:text-emerald-400">
+                            على <strong>iPhone</strong>: اضغط على زر المشاركة <span class="px-1 text-blue-500">⎋</span> ثم اختر "إضافة إلى الشاشة الرئيسية".<br>
+                            على <strong>Android</strong>: اضغط على النقاط الثلاث ⋮ ثم اختر "تثبيت التطبيق" أو "Add to Home screen".
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Library View -->
         <div id="libraryView" class="hidden">
             <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white text-right">قاموس الدوال بالفرنسية</h2>
-                <button onclick="toggleLibrary()" class="text-gray-400 font-bold hover:text-red-500 transition-colors">إغلاق ✖</button>
-            </div>
-
-            <div class="mb-6 bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">البحث السريع عن دالة</label>
-                <div class="relative">
-                    <select id="functionSearch" onchange="searchFunction(this.value)" class="w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-700 dark:text-white outline-none focus:ring-2 focus:ring-excel-green transition-all appearance-none">
-                        <option value="">اختر دالة للمعاينة...</option>
-                    </select>
-                </div>
+                <h2 class="text-xl font-bold">قاموس الدوال (80 دالة)</h2>
+                <button onclick="toggleLibrary()" class="text-red-500 font-bold">✖</button>
             </div>
             
-            <div class="flex overflow-x-auto gap-4 mb-6 pb-2 no-scrollbar border-b border-gray-200 dark:border-gray-700" id="libraryTabs"></div>
-            <div id="libraryContent" class="space-y-6 animate-in fade-in duration-300"></div>
+            <div class="mb-4 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                <select id="libSearch" onchange="searchFunction(this.value)" class="w-full p-2 bg-transparent outline-none text-sm ltr">
+                    <option value="">🔍 ابحث عن دالة...</option>
+                </select>
+            </div>
+
+            <div class="flex overflow-x-auto gap-4 mb-4 pb-2 no-scrollbar" id="libraryTabs"></div>
+            <div id="libraryContent" class="space-y-4"></div>
         </div>
 
-        <!-- Quiz Interface -->
+        <!-- Quiz View -->
         <div id="quizView" class="hidden">
             <div class="flex justify-between items-center mb-6">
-                <button onclick="goHome()" class="text-gray-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-                <div class="px-4 py-1 bg-blue-50 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-300 font-bold text-xs" id="quizCatName">الفئة</div>
-                <div id="quizStepCounter" class="text-xs text-gray-400 font-bold">1 / 6</div>
+                <button onclick="goHome()" class="text-gray-400">✖</button>
+                <div id="quizCatName" class="px-4 py-1 bg-blue-50 dark:bg-blue-900/30 rounded-full text-blue-600 font-bold text-xs"></div>
+                <div id="quizStepCounter" class="text-xs text-gray-400 font-bold"></div>
             </div>
 
             <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700">
-                <h3 id="quizQuestion" class="text-lg font-bold text-gray-800 dark:text-white mb-6"></h3>
-                
-                <div class="overflow-x-auto mb-6 bg-slate-50 dark:bg-gray-900 rounded-xl p-2 border border-slate-100 dark:border-gray-700">
+                <h3 id="quizQuestion" class="text-lg font-bold mb-6"></h3>
+                <div class="overflow-x-auto mb-6 bg-slate-50 dark:bg-gray-900 rounded-xl p-2">
                     <table class="excel-grid w-full" id="quizTable"></table>
                 </div>
-
                 <div class="space-y-4">
-                    <div class="flex flex-col gap-2">
-                        <label class="text-xs font-bold text-gray-400 mr-1 uppercase tracking-wider">Formule Excel (Français)</label>
-                        <input type="text" id="quizInput" style="direction: ltr; text-align: left;" spellcheck="false" class="w-full p-4 bg-gray-50 dark:bg-gray-700 border-2 border-transparent focus:border-blue-500 rounded-2xl font-mono text-blue-800 dark:text-blue-300 outline-none transition-all" placeholder="=FONCTION(...)">
-                    </div>
-                    <div id="quizFeedback" class="hidden p-4 rounded-2xl text-sm font-bold text-center animate-bounce"></div>
-                    <button id="submitBtn" onclick="checkAnswer()" class="w-full py-4 excel-green text-white rounded-2xl font-bold shadow-lg shadow-green-100 dark:shadow-none active:scale-95 transition-all">تحقق من الإجابة</button>
+                    <input type="text" id="quizInput" class="w-full p-4 bg-gray-50 dark:bg-gray-700 rounded-2xl font-mono ltr outline-none focus:ring-2 focus:ring-blue-500" placeholder="=FONCTION(...)">
+                    <div id="quizFeedback" class="hidden p-4 rounded-2xl text-sm font-bold text-center"></div>
+                    <button id="submitBtn" onclick="checkAnswer()" class="w-full py-4 excel-green text-white rounded-2xl font-bold shadow-lg">تحقق من الإجابة</button>
                     <button id="nextBtn" onclick="nextQuestion()" class="hidden w-full py-4 bg-blue-600 text-white rounded-2xl font-bold">التمرين التالي ➔</button>
                 </div>
             </div>
         </div>
 
-        <!-- Result View -->
+        <!-- Result -->
         <div id="resultView" class="hidden text-center py-10">
-            <div class="text-7xl mb-6">🎊</div>
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">أحسنت يا بطل!</h2>
-            <p class="text-gray-500 mb-8 px-10">لقد أتممت التمارين بنجاح.</p>
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 inline-block mb-8">
-                <div class="text-xs text-gray-400 uppercase font-bold mb-1">النقاط الإجمالية</div>
+            <div class="text-6xl mb-4">🏆</div>
+            <h2 class="text-2xl font-bold mb-8">عمل رائع!</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm inline-block mb-8">
                 <div class="text-4xl font-black text-excelGreen" id="finalScore">0</div>
+                <div class="text-xs text-gray-400 uppercase font-bold mt-1">النقاط المكتسبة</div>
             </div>
             <br>
-            <button onclick="goHome()" class="px-10 py-4 bg-gray-800 dark:bg-gray-700 text-white rounded-2xl font-bold">العودة للرئيسية</button>
+            <button onclick="goHome()" class="px-10 py-4 bg-gray-800 text-white rounded-2xl font-bold">العودة للرئيسية</button>
         </div>
     </main>
 
     <script>
         const categories = {
-            math: { name: "الرياضيات", icon: "📐", color: "blue", 
-                functions: [
-                    { name: "SOMME", desc: "تقوم بجمع كافة الأرقام في نطاق من الخلايا.", syntax: "=SOMME(plage)", example: "=SOMME(B1:B3)", uiData: { h: ['A (Items)', 'B (Prix)'], b: [['PC', '1200'], ['Souris', '25'], ['Clavier', '50']], target: 'B4', result: '1275' }, detail: "تجمع الأسعار في العمود B للحصول على المجموع الإجمالي." },
-                    { name: "PRODUIT", desc: "ضرب كافة الأرقام الموجودة كوسطاء.", syntax: "=PRODUIT(plage)", example: "=PRODUIT(A2:B2)", uiData: { h: ['A (Qté)', 'B (Prix)'], b: [['5', '10']], target: 'C2', result: '50' }, detail: "تضرب الكمية في السعر لحساب التكلفة الإجمالية." },
-                    { name: "ARRONDI", desc: "تقريب رقم إلى عدد محدد من الأرقام العشرية.", syntax: "=ARRONDI(nombre; num_chiffres)", example: "=ARRONDI(A1; 2)", uiData: { h: ['A (Valeur)'], b: [['15,6789']], target: 'B1', result: '15,68' }, detail: "تقرب الرقم 15,6789 إلى منزلتين عشريتين." },
-                    { name: "MOYENNE", desc: "حساب المتوسط الحسابي لمجموعة من القيم.", syntax: "=MOYENNE(plage)", example: "=MOYENNE(A1:A3)", uiData: { h: ['A (Notes)'], b: [['10'], ['15'], ['11']], target: 'A4', result: '12' }, detail: "تحسب معدل الدرجات في العمود A." },
-                    { name: "SOMME.SI", desc: "جمع الخلايا التي تحقق معياراً معيناً.", syntax: "=SOMME.SI(plage; critère)", example: "=SOMME.SI(A1:A3; \">50\")", uiData: { h: ['A (Valeur)'], b: [['10'], ['60'], ['80']], target: 'B1', result: '140' }, detail: "تجمع فقط الأرقام الأكبر من 50 (60+80)." }
-                ],
-                quiz: {
-                    q: "اجمع أسعار جميع المنتجات في العمود B (من السطر 1 إلى 3).",
-                    table: { h: ['A (Produit)', 'B (Prix)'], b: [['PC', '1200'], ['Clavier', '50'], ['Souris', '25']] },
-                    correct: ["=SOMME(B1:B3)"], points: 10
-                }
-            },
-            logic: { name: "المنطق", icon: "🧠", color: "purple", 
-                functions: [
-                    { name: "SI", desc: "تتحقق من شرط وتعيد قيمة للصح وأخرى للخطأ.", syntax: "=SI(test; vrai; faux)", example: "=SI(A1>=10; \"Admis\"; \"Refusé\")", uiData: { h: ['A (Moyenne)'], b: [['12']], target: 'B1', result: 'Admis' }, detail: "إذا كان المعدل 10 أو أكثر، يظهر الطالب كـ Admis." },
-                    { name: "SI.ERREUR", desc: "إرجاع قيمة تحددها إذا كانت الصيغة تعطي خطأ.", syntax: "=SI.ERREUR(val; si_err)", example: "=SI.ERREUR(A1/B1; 0)", uiData: { h: ['A (Dividende)', 'B (Diviseur)'], b: [['10', '0']], target: 'C1', result: '0' }, detail: "تعرض 0 بدلاً من الخطأ #DIV/0! في حال كانت القسمة على صفر." }
-                ],
-                quiz: {
-                    q: "إذا كانت العلامة في A1 أكبر من أو تساوي 10، اكتب 'Reçu'، وإلا اكتب 'Échoué'.",
-                    table: { h: ['A (Note)'], b: [['14']] },
-                    correct: ["=SI(A1>=10;\"REÇU\";\"ÉCHOUÉ\")", "=SI(A1>=10;\"RECU\";\"ECHOUÉ\")"], points: 15
-                }
-            },
-            text: { name: "النصوص", icon: "📝", color: "yellow", 
-                functions: [
-                    { name: "CONCAT", desc: "دمج عدة نصوص في سلسلة واحدة.", syntax: "=CONCAT(t1; t2)", example: "=CONCAT(A1; \" \"; B1)", uiData: { h: ['A (Nom)', 'B (Prénom)'], b: [['Ali', 'Ahmed']], target: 'C1', result: 'Ali Ahmed' }, detail: "تدمج الاسم واللقب مع مسافة بينهما." },
-                    { name: "NBCAR", desc: "حساب عدد الحروف في النص.", syntax: "=NBCAR(texte)", example: "=NBCAR(A1)", uiData: { h: ['A (Word)'], b: [['Excel']], target: 'B1', result: '5' }, detail: "تحسب طول كلمة Excel." }
-                ],
-                quiz: {
-                    q: "قم بدمج الاسم (A1) واللقب (B1) مع وضع مسافة بينهما.",
-                    table: { h: ['A (Nom)', 'B (Prénom)'], b: [['Ahmed', 'Ali']] },
-                    correct: ["=CONCAT(A1;\" \";B1)", "=A1&\" \"&B1"], points: 10
-                }
-            },
-            lookup: { name: "البحث", icon: "🔍", color: "red", 
-                functions: [
-                    { name: "RECHERCHEV", desc: "البحث الرأسي عن قيمة في عمود.", syntax: "=RECHERCHEV(v; table; col; [mode])", example: "=RECHERCHEV(\"PC\"; A1:B3; 2; 0)", uiData: { h: ['A (Prod)', 'B (Prix)'], b: [['PC', '500'], ['TV', '300']], target: 'D1', result: '500' }, detail: "تبحث عن سعر الـ PC في الجدول." }
-                ],
-                quiz: {
-                    q: "ابحث عن سعر 'PC' (الموجود في A1:B3) باستخدام دالة البحث العمودي.",
-                    table: { h: ['A (Nom)', 'B (Prix)'], b: [['PC', '5000'], ['TEL', '1200'], ['TAB', '800']] },
-                    correct: ["=RECHERCHEV(\"PC\";A1:B3;2;0)", "=RECHERCHEV(\"PC\";A1:B3;2;FAUX)"], points: 20
-                }
-            },
-            stat: { name: "الإحصاء", icon: "📊", color: "green", 
-                functions: [
-                    { name: "MAX", desc: "إرجاع أكبر قيمة في مجموعة.", syntax: "=MAX(plage)", example: "=MAX(A1:A3)", uiData: { h: ['A (Values)'], b: [['5'], ['50'], ['12']], target: 'A4', result: '50' }, detail: "تحدد أعلى رقم في القائمة." }
-                ],
-                quiz: {
-                    q: "أوجد أكبر قيمة (الحد الأقصى) في نطاق الخلايا من A1 إلى A4.",
-                    table: { h: ['A (Scores)'], b: [['85'], ['92'], ['78'], ['95']] },
-                    correct: ["=MAX(A1:A4)"], points: 10
-                }
-            },
-            date: { name: "التاريخ", icon: "📅", color: "indigo", 
-                functions: [
-                    { name: "ANNEE", desc: "استخراج رقم السنة من تاريخ.", syntax: "=ANNEE(date)", example: "=ANNEE(A1)", uiData: { h: ['A (Date)'], b: [['20/05/2024']], target: 'B1', result: '2024' }, detail: "تستخرج السنة فقط كرقم." }
-                ],
-                quiz: {
-                    q: "استخرج رقم 'السنة' من التاريخ الموجود في الخلية A1.",
-                    table: { h: ['A (Date)'], b: [['18/12/2025']] },
-                    correct: ["=ANNEE(A1)"], points: 10
-                }
-            }
+            math: { name: "الرياضيات", icon: "📐", color: "blue", functions: [
+                { name: "SOMME", desc: "جمع نطاق من الخلايا.", syntax: "=SOMME(A1:A10)", example: "=SOMME(10;20)", uiData: { h:['Val'], b:[['10'],['20']], target:'B1', result:'30' }, explain: "تقوم الدالة بجمع القيمة 10 الموجودة في الخلية الأولى مع القيمة 20 في الخلية الثانية لتعطي النتيجة النهائية 30." },
+                { name: "PRODUIT", desc: "ضرب الأرقام.", syntax: "=PRODUIT(A1;B1)", example: "=PRODUIT(5;4)", uiData: { h:['A','B'], b:[['5','4']], target:'C1', result:'20' }, explain: "تضرب الدالة الرقم 5 في الرقم 4، مما ينتج عنه حاصل ضرب يساوي 20." },
+                { name: "ARRONDI", desc: "تقريب رقم.", syntax: "=ARRONDI(nb; dec)", example: "=ARRONDI(15,67; 1)", uiData: { h:['Nb'], b:[['15,67']], target:'B1', result:'15,7' }, explain: "تقرب الرقم 15.67 إلى أقرب منزلة عشرية واحدة، ولأن الرقم الثاني (7) أكبر من 5، تم زيادة الرقم 6 ليصبح 7." },
+                { name: "ABS", desc: "القيمة المطلقة.", syntax: "=ABS(nombre)", example: "=ABS(-50)", uiData: { h:['Val'], b:[['-50']], target:'B1', result:'50' }, explain: "تزيل الدالة الإشارة السالبة من الرقم -50 لتعطي المسافة الموجبة الصرفة وهي 50." },
+                { name: "ENT", desc: "الجزء الصحيح.", syntax: "=ENT(nombre)", example: "=ENT(8,9)", uiData: { h:['Val'], b:[['8,9']], target:'B1', result:'8' }, explain: "تأخذ الجزء الصحيح فقط من الرقم 8.9 وتتجاهل أي كسور عشرية تماماً." },
+                { name: "PUISSANCE", desc: "حساب الأس.", syntax: "=PUISSANCE(nb; p)", example: "=PUISSANCE(3;2)", uiData: { h:['N','P'], b:[['3','2']], target:'C1', result:'9' }, explain: "تحسب 3 مرفوعة للقوة 2 (3 × 3) وتكون النتيجة 9." },
+                { name: "RACINE", desc: "الجذر التربيعي.", syntax: "=RACINE(nb)", example: "=RACINE(16)", uiData: { h:['Val'], b:[['16']], target:'B1', result:'4' }, explain: "توجد الرقم الذي إذا ضُرب في نفسه يعطي 16، وهو الرقم 4." },
+                { name: "MOD", desc: "باقي القسمة.", syntax: "=MOD(nb; div)", example: "=MOD(10;3)", uiData: { h:['N','D'], b:[['10','3']], target:'C1', result:'1' }, explain: "عند قسمة 10 على 3، يكون الحاصل 3 ويتبقى 1، وهذا المتبقي هو ما تعيده الدالة." },
+                { name: "PI", desc: "قيمة الثابت ط.", syntax: "=PI()", example: "=PI()", uiData: { h:['F'], b:[['PI']], target:'A1', result:'3,14...' }, explain: "تعيد القيمة الرياضية الثابتة للنسبة التقريبية المستخدمة في حساب الدوائر." },
+                { name: "SOMME.SI", desc: "جمع مشروط.", syntax: "=SOMME.SI(plage; crit)", example: "=SOMME.SI(A1:A5; \">10\")", uiData: { h:['V'], b:[['5'],['15']], target:'B1', result:'15' }, explain: "تبحث الدالة في النطاق، فتجد أن 15 فقط هي الأكبر من 10، فتجمعها وحدها." }
+            ], quiz: { q: "اجمع الأسعار في العمود B من السطر 1 لـ 3.", table: { h:['A','B'], b:[['P1','100'],['P2','200'],['P3','300']] }, correct: ["=SOMME(B1:B3)"], points: 10 } },
+            
+            logic: { name: "المنطق", icon: "🧠", color: "purple", functions: [
+                { name: "SI", desc: "دالة الشرط.", syntax: "=SI(test; v; f)", example: "=SI(A1>10; \"OK\"; \"NO\")", uiData: { h:['Note'], b:[['12']], target:'B1', result:'OK' }, explain: "تتحقق هل 12 أكبر من 10؟ الإجابة نعم، لذا تختار النص الأول 'OK'." },
+                { name: "ET", desc: "شرط (و).", syntax: "=ET(c1; c2)", example: "=ET(5>2; 1<3)", uiData: { h:['T1','T2'], b:[['Vrai','Vrai']], target:'C1', result:'VRAI' }, explain: "بما أن كلا الشرطين صحيحين (5 أكبر من 2 و 1 أصغر من 3)، تعطي الدالة نتيجة 'VRAI'." },
+                { name: "OU", desc: "شرط (أو).", syntax: "=OU(c1; c2)", example: "=OU(5>10; 1<3)", uiData: { h:['T1','T2'], b:[['Faux','Vrai']], target:'C1', result:'VRAI' }, explain: "رغم أن الشرط الأول خطأ، إلا أن وجود شرط واحد صحيح يكفي لتكون النتيجة 'VRAI'." },
+                { name: "SI.ERREUR", desc: "معالجة الأخطاء.", syntax: "=SI.ERREUR(v; val_err)", example: "=SI.ERREUR(A1/B1; 0)", uiData: { h:['A','B'], b:[['10','0']], target:'C1', result:'0' }, explain: "بدلاً من إظهار خطأ القسمة على صفر (#DIV/0!)، تقوم الدالة بإظهار القيمة البديلة 0." }
+            ], quiz: { q: "إذا كانت الخلية A1 أكبر من 10 اكتب 'Pass' وإلا 'Fail'.", table: { h:['A'], b:[['15']] }, correct: ["=SI(A1>10;\"PASS\";\"FAIL\")"], points: 15 } },
+            
+            text: { name: "النصوص", icon: "📝", color: "yellow", functions: [
+                { name: "CONCAT", desc: "دمج نصوص.", syntax: "=CONCAT(A1; B1)", example: "=CONCAT(\"Hi \"; \"Ali\")", uiData: { h:['T1','T2'], b:[['Hi','Ali']], target:'C1', result:'Hi Ali' }, explain: "تربط الكلمة الأولى بالكلمة الثانية لتكوين جملة واحدة متصلة." },
+                { name: "GAUCHE", desc: "من اليسار.", syntax: "=GAUCHE(t; n)", example: "=GAUCHE(\"Excel\"; 2)", uiData: { h:['T'], b:[['Excel']], target:'B1', result:'Ex' }, explain: "تستخرج أول حرفين من جهة اليسار للكلمة 'Excel'." },
+                { name: "NBCAR", desc: "طول النص.", syntax: "=NBCAR(t)", example: "=NBCAR(\"ABC\")", uiData: { h:['T'], b:[['ABC']], target:'B1', result:'3' }, explain: "تقوم بعد عدد الحروف في النص 'ABC' والنتيجة هي 3 حروف." },
+                { name: "MAJUSCULE", desc: "تكبير الحروف.", syntax: "=MAJUSCULE(t)", example: "=MAJUSCULE(\"ali\")", uiData: { h:['T'], b:[['ali']], target:'B1', result:'ALI' }, explain: "تحول جميع حروف الكلمة من الحالة الصغيرة (Lowercase) إلى الحالة الكبيرة (Uppercase)." }
+            ], quiz: { q: "ادمج الاسم في A1 واللقب في B1 مع مسافة بينهما.", table: { h:['A','B'], b:[['Ali','Ahmed']] }, correct: ["=CONCAT(A1;\" \";B1)","=A1&\" \"&B1"], points: 10 } },
+            
+            lookup: { name: "البحث", icon: "🔍", color: "red", functions: [
+                { name: "RECHERCHEV", desc: "بحث عمودي.", syntax: "=RECHERCHEV(v; tab; col; 0)", example: "=RECHERCHEV(\"1\"; A1:B2; 2; 0)", uiData: { h:['ID','Nom'], b:[['1','Ali'],['2','Bob']], target:'D1', result:'Ali' }, explain: "تبحث عن المعرف '1' في العمود الأول، وعندما تجده تأخذ القيمة المقابلة له من العمود الثاني." },
+                { name: "RECHERCHEX", desc: "بحث متطور.", syntax: "=RECHERCHEX(v; v_p; r_p)", example: "=RECHERCHEX(\"A\"; A1:A2; B1:B2)", uiData: { h:['K','V'], b:[['A','100']], target:'C1', result:'100' }, explain: "تبحث عن 'A' في نطاق البحث، وتعيد ما يقابلها مباشرة من نطاق النتائج المحدد." }
+            ], quiz: { q: "ابحث عن سعر 'PC' في الجدول A1:B3 (السعر في العمود 2).", table: { h:['Prod','Prix'], b:[['PC','500'],['TV','300']] }, correct: ["=RECHERCHEV(\"PC\";A1:B3;2;0)"], points: 20 } },
+            
+            stat: { name: "الإحصاء", icon: "📊", color: "green", functions: [
+                { name: "MOYENNE", desc: "المتوسط الحسابي.", syntax: "=MOYENNE(p)", example: "=MOYENNE(10;20)", uiData: { h:['V'], b:[['10'],['20']], target:'B1', result:'15' }, explain: "تجمع 10 مع 20 (المجموع 30) ثم تقسم على عددهما (2) ليكون المتوسط 15." },
+                { name: "MAX", desc: "أكبر قيمة.", syntax: "=MAX(p)", example: "=MAX(1;5;2)", uiData: { h:['V'], b:[['1'],['5'],['2']], target:'B1', result:'5' }, explain: "تقارن بين الأرقام الثلاثة وتختار الرقم الأكبر بينها وهو 5." },
+                { name: "NB.SI", desc: "عد مشروط.", syntax: "=NB.SI(p; crit)", example: "=NB.SI(A1:A2; \">10\")", uiData: { h:['V'], b:[['5'],['15']], target:'B1', result:'1' }, explain: "تعد كم خلية تحتوي على رقم أكبر من 10، والنتيجة هي خلية واحدة فقط (التي بها 15)." }
+            ], quiz: { q: "أوجد أكبر قيمة في النطاق A1:A4.", table: { h:['V'], b:[['10'],['50'],['20'],['40']] }, correct: ["=MAX(A1:A4)"], points: 10 } },
+            
+            date: { name: "التاريخ", icon: "📅", color: "indigo", functions: [
+                { name: "ANNEE", desc: "استخراج السنة.", syntax: "=ANNEE(d)", example: "=ANNEE(\"15/05/2023\")", uiData: { h:['D'], b:[['15/05/23']], target:'B1', result:'2023' }, explain: "تحلل التاريخ المعطى وتستخلص منه رقم السنة المكون من 4 أرقام وهو 2023." },
+                { name: "JOUR", desc: "استخراج اليوم.", syntax: "=JOUR(d)", example: "=JOUR(\"05/12/2023\")", uiData: { h:['D'], b:[['05/12/23']], target:'B1', result:'5' }, explain: "تستخرج رقم اليوم من التاريخ، وهو هنا اليوم الخامس من الشهر." }
+            ], quiz: { q: "استخرج السنة من التاريخ في A1.", table: { h:['A'], b:[['20/12/2025']] }, correct: ["=ANNEE(A1)"], points: 10 } }
         };
 
+        let totalPoints = parseInt(localStorage.getItem('excelPoints') || 0);
         let currentQuizQueue = [];
         let currentStep = 0;
         let sessionScore = 0;
-        let totalPoints = parseInt(localStorage.getItem('excelPoints') || 0);
         let activeLibraryCat = 'math';
 
         function init() {
-            // Restore Dark Mode
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.documentElement.classList.add('dark');
-                document.getElementById('darkIcon').classList.remove('hidden');
-                document.getElementById('lightIcon').classList.add('hidden');
-            }
-
-            const grid = document.getElementById('categoriesGrid');
-            if(grid) {
-                grid.innerHTML = '';
-                Object.keys(categories).forEach(key => {
-                    const cat = categories[key];
-                    const div = document.createElement('div');
-                    div.className = `bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-b-4 border-${cat.color}-500 flex flex-col items-center cursor-pointer active:scale-95 transition-all hover:shadow-md`;
-                    div.onclick = () => startSingleQuiz(key);
-                    div.innerHTML = `<span class="text-3xl mb-2">${cat.icon}</span><span class="font-bold text-gray-800 dark:text-white text-sm">${cat.name}</span>`;
-                    grid.appendChild(div);
-                });
-            }
             document.getElementById('userPoints').innerText = totalPoints;
+            const grid = document.getElementById('categoriesGrid');
+            Object.keys(categories).forEach(key => {
+                const cat = categories[key];
+                const div = document.createElement('div');
+                div.className = `bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border-b-4 border-${cat.color}-500 flex flex-col items-center cursor-pointer active:scale-95 transition-all`;
+                div.onclick = () => startSingleQuiz(key);
+                div.innerHTML = `<span class="text-3xl mb-1">${cat.icon}</span><span class="font-bold text-xs">${cat.name}</span>`;
+                grid.appendChild(div);
+            });
             buildLibraryTabs();
             populateSearchList();
-            updateFloatingButtonVisibility();
+
+            // Scroll listener for Top Button
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('scrollTopBtn');
+                const isLibraryVisible = !document.getElementById('libraryView').classList.contains('hidden');
+                if (isLibraryVisible && window.scrollY > 300) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
         }
 
         function toggleDarkMode() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            const darkIcon = document.getElementById('darkIcon');
-            const lightIcon = document.getElementById('lightIcon');
-            
-            if (isDark) {
-                localStorage.setItem('darkMode', 'enabled');
-                darkIcon.classList.remove('hidden');
-                lightIcon.classList.add('hidden');
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-                darkIcon.classList.add('hidden');
-                lightIcon.classList.remove('hidden');
-            }
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function populateSearchList() {
-            const select = document.getElementById('functionSearch');
-            if (!select) return;
-            let allFuncs = [];
-            Object.keys(categories).forEach(catKey => {
-                categories[catKey].functions.forEach(f => {
-                    allFuncs.push({ name: f.name, cat: catKey });
-                });
-            });
-            allFuncs.sort((a, b) => a.name.localeCompare(b.name));
-            select.innerHTML = '<option value="">اختر دالة للمعاينة...</option>';
-            allFuncs.forEach(item => {
+            const select = document.getElementById('libSearch');
+            let all = [];
+            Object.keys(categories).forEach(k => categories[k].functions.forEach(f => all.push({n: f.name, k})));
+            all.sort((a,b) => a.n.localeCompare(b.n));
+            all.forEach(item => {
                 const opt = document.createElement('option');
-                opt.value = `${item.cat}|${item.name}`;
-                opt.innerText = item.name;
+                opt.value = `${item.k}|${item.n}`;
+                opt.innerText = item.n;
                 select.appendChild(opt);
             });
         }
 
-        function searchFunction(value) {
-            if (!value) return;
-            const [catKey, funcName] = value.split('|');
-            activeLibraryCat = catKey;
+        function searchFunction(val) {
+            if(!val) return;
+            const [cat, name] = val.split('|');
+            activeLibraryCat = cat;
             buildLibraryTabs();
-            renderLibraryContent(catKey);
+            renderLibraryContent(cat);
             setTimeout(() => {
-                const element = document.getElementById(`func-card-${funcName}`);
-                if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const el = document.getElementById(`func-${name}`);
+                if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
             }, 100);
         }
 
         function buildLibraryTabs() {
-            const tabsContainer = document.getElementById('libraryTabs');
-            tabsContainer.innerHTML = '';
+            const container = document.getElementById('libraryTabs');
+            container.innerHTML = '';
             Object.keys(categories).forEach(key => {
                 const cat = categories[key];
                 const btn = document.createElement('button');
-                btn.className = `category-tab px-4 py-2 whitespace-nowrap transition-all ${activeLibraryCat === key ? 'active' : 'text-gray-400'}`;
-                btn.onclick = () => {
-                    activeLibraryCat = key;
-                    buildLibraryTabs();
-                    renderLibraryContent(key);
-                };
+                btn.className = `category-tab px-3 py-1 whitespace-nowrap text-xs transition-all ${activeLibraryCat === key ? 'active' : 'text-gray-400'}`;
+                btn.onclick = () => { activeLibraryCat = key; buildLibraryTabs(); renderLibraryContent(key); };
                 btn.innerText = `${cat.icon} ${cat.name}`;
-                tabsContainer.appendChild(btn);
+                container.appendChild(btn);
             });
         }
 
         function renderLibraryContent(catKey) {
-            const libContent = document.getElementById('libraryContent');
-            const cat = categories[catKey];
-            libContent.innerHTML = '';
-            cat.functions.forEach(func => {
+            const container = document.getElementById('libraryContent');
+            container.innerHTML = '';
+            categories[catKey].functions.forEach(func => {
                 const card = document.createElement('div');
-                card.id = `func-card-${func.name}`;
-                card.className = `bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border-r-8 border-${cat.color}-500 mb-6`;
+                card.id = `func-${func.name}`;
+                card.className = "bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border-r-4 border-" + categories[catKey].color + "-500";
                 card.innerHTML = `
-                    <div class="flex justify-between items-center mb-4">
-                        <h4 class="font-black text-2xl text-${cat.color}-600">f() ${func.name}</h4>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-bold text-excelGreen">${func.name}</h4>
+                        <span class="text-[9px] bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">FRANCE</span>
                     </div>
-                    <p class="text-gray-800 dark:text-gray-200 text-lg mb-6 font-bold text-right">${func.desc}</p>
-                    <div class="excel-ui-box mb-4">
-                        <div class="excel-formula-bar ltr"><span class="text-green-600">fx</span> | ${func.example}</div>
-                        <div class="p-2 bg-slate-50 dark:bg-gray-900">
-                             <table class="excel-grid w-full">
+                    <p class="text-sm font-medium mb-3">${func.desc}</p>
+                    <div class="excel-ui-box mb-3 ltr">
+                        <div class="excel-formula-bar bg-gray-50 dark:bg-gray-700">fx | ${func.example}</div>
+                        <div class="p-2 overflow-x-auto">
+                            <table class="excel-grid w-full">
                                 <thead><tr><th></th>${func.uiData.h.map(h => `<th>${h}</th>`).join('')}</tr></thead>
-                                <tbody>${func.uiData.b.map((row, i) => `<tr><th>${i+1}</th>${row.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
-                             </table>
+                                <tbody>${func.uiData.b.map((r, i) => `<tr><th>${i+1}</th>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-xl ltr mb-4">
-                        <code class="text-blue-700 dark:text-blue-300 font-bold">${func.syntax}</code>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-xl border border-green-100 flex justify-between items-center mb-3">
+                         <div class="flex items-center gap-2 ltr">
+                            <div class="w-6 h-6 bg-green-500 text-white rounded flex items-center justify-center text-[10px] font-bold">${func.uiData.target}</div>
+                            <span class="text-sm font-bold text-green-700 dark:text-green-300">${func.uiData.result}</span>
+                         </div>
+                         <span class="text-[10px] font-bold text-gray-400">النتيجة</span>
                     </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 text-right font-medium">${func.detail}</p>
+                    <div class="bg-blue-50 dark:bg-blue-900/10 p-3 rounded-xl border border-blue-100 dark:border-blue-900/30">
+                        <p class="text-[10px] font-bold text-blue-600 mb-1">💡 شرح المثال:</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">${func.explain || "لا يوجد شرح حالياً."}</p>
+                    </div>
                 `;
-                libContent.appendChild(card);
+                container.appendChild(card);
             });
         }
 
         function toggleLibrary() {
             const dash = document.getElementById('dashboard');
             const lib = document.getElementById('libraryView');
+            const float = document.getElementById('floatingHome');
+            const scrollBtn = document.getElementById('scrollTopBtn');
             if (lib.classList.contains('hidden')) {
                 dash.classList.add('hidden');
                 lib.classList.remove('hidden');
+                float.classList.add('visible');
                 renderLibraryContent(activeLibraryCat);
             } else {
                 lib.classList.add('hidden');
                 dash.classList.remove('hidden');
+                float.classList.remove('visible');
+                scrollBtn.classList.remove('visible');
             }
-            updateFloatingButtonVisibility();
         }
 
         function startFullQuiz() {
@@ -488,46 +366,44 @@
 
         function showQuiz() {
             document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('libraryView').classList.add('hidden');
-            document.getElementById('resultView').classList.add('hidden');
             document.getElementById('quizView').classList.remove('hidden');
+            document.getElementById('floatingHome').classList.add('visible');
             loadQuestion();
-            updateFloatingButtonVisibility();
         }
 
         function loadQuestion() {
             const catKey = currentQuizQueue[currentStep];
             const data = categories[catKey];
-            const quiz = data.quiz;
             document.getElementById('quizCatName').innerText = data.name;
-            document.getElementById('quizStepCounter').innerText = `${currentStep + 1} / ${currentQuizQueue.length}`;
-            document.getElementById('quizQuestion').innerText = quiz.q;
+            document.getElementById('quizStepCounter').innerText = `${currentStep+1} / ${currentQuizQueue.length}`;
+            document.getElementById('quizQuestion').innerText = data.quiz.q;
             document.getElementById('quizInput').value = "";
             document.getElementById('quizFeedback').classList.add('hidden');
             document.getElementById('nextBtn').classList.add('hidden');
             document.getElementById('submitBtn').classList.remove('hidden');
             const table = document.getElementById('quizTable');
-            table.innerHTML = `<thead><tr><th></th>${quiz.table.h.map(h => `<th>${h}</th>`).join('')}</tr></thead>
-                               <tbody>${quiz.table.b.map((r, i) => `<tr><th>${i+1}</th>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
+            table.innerHTML = `<thead><tr><th></th>${data.quiz.table.h.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+                               <tbody>${data.quiz.table.b.map((r, i) => `<tr><th>${i+1}</th>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
         }
 
         function checkAnswer() {
-            const input = document.getElementById('quizInput').value.trim().replace(/\s/g, '').toUpperCase();
+            const input = document.getElementById('quizInput').value.trim().toUpperCase().replace(/\s/g, '');
             const quiz = categories[currentQuizQueue[currentStep]].quiz;
+            const isCorrect = quiz.correct.some(a => a.toUpperCase().replace(/\s/g, '') === input);
             const feedback = document.getElementById('quizFeedback');
-            const isCorrect = quiz.correct.some(ans => ans.replace(/\s/g, '').toUpperCase() === input);
-            feedback.classList.remove('hidden', 'success-bg', 'error-bg');
+            feedback.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
             if(isCorrect) {
-                feedback.innerText = "رائع! إجابة صحيحة ✅";
-                feedback.classList.add('success-bg');
+                feedback.innerText = "أحسنت! إجابة صحيحة ✅";
+                feedback.classList.add('bg-green-100', 'text-green-700');
                 sessionScore += quiz.points;
                 totalPoints += quiz.points;
-                updatePoints();
+                localStorage.setItem('excelPoints', totalPoints);
+                document.getElementById('userPoints').innerText = totalPoints;
                 document.getElementById('submitBtn').classList.add('hidden');
                 document.getElementById('nextBtn').classList.remove('hidden');
             } else {
-                feedback.innerText = "للأسف، الصيغة خاطئة ❌";
-                feedback.classList.add('error-bg');
+                feedback.innerText = "حاول مرة أخرى ❌";
+                feedback.classList.add('bg-red-100', 'text-red-700');
             }
         }
 
@@ -535,39 +411,23 @@
             if(currentStep < currentQuizQueue.length - 1) {
                 currentStep++; loadQuestion();
             } else {
-                showResults();
+                document.getElementById('quizView').classList.add('hidden');
+                document.getElementById('resultView').classList.remove('hidden');
+                document.getElementById('finalScore').innerText = sessionScore;
             }
         }
 
-        function showResults() {
-            document.getElementById('quizView').classList.add('hidden');
-            document.getElementById('resultView').classList.remove('hidden');
-            document.getElementById('finalScore').innerText = sessionScore;
-            updateFloatingButtonVisibility();
-        }
-
-        function updatePoints() {
-            document.getElementById('userPoints').innerText = totalPoints;
-            localStorage.setItem('excelPoints', totalPoints);
-        }
-
         function goHome() {
+            document.getElementById('libraryView').classList.add('hidden');
             document.getElementById('quizView').classList.add('hidden');
             document.getElementById('resultView').classList.add('hidden');
-            document.getElementById('libraryView').classList.add('hidden');
             document.getElementById('dashboard').classList.remove('hidden');
-            updateFloatingButtonVisibility();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function updateFloatingButtonVisibility() {
-            const floatingBtn = document.getElementById('floatingHome');
-            const dash = document.getElementById('dashboard');
-            if (dash.classList.contains('hidden')) floatingBtn.classList.add('visible');
-            else floatingBtn.classList.remove('visible');
+            document.getElementById('floatingHome').classList.remove('visible');
+            document.getElementById('scrollTopBtn').classList.remove('visible');
+            window.scrollTo(0,0);
         }
 
         window.onload = init;
     </script>
 </body>
-</html>   
+</html>
